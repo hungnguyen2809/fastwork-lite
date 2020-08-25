@@ -1,5 +1,7 @@
 {
   "name": "FastWorkLite",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

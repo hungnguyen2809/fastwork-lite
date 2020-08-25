@@ -1,0 +1,163 @@
+ion-card{
+  ion-card-header{
+    padding: 10px;
+    ion-text{
+      font-weight: bold;
+      font-size: large;
+
+      small{
+        font-weight: normal;
+      }
+    }
+  }
+
+  ion-card-content{
+    padding-bottom: 5px;
+  }
+
+  ion-grid{
+    .title-date-time{
+      ion-col{
+        ion-text{
+          font-weight: bold;
+        }
+      }
+    }
+
+    .date-time-careate-work{
+      display: inline;
+      background-color: #E1F0FF;
+      color: #55A9FF;
+      padding: 8px 10px;
+      font-weight: bold;
+      font-size: 16px;
+      border-radius: 6px;
+    }
+
+    .number-member{
+      margin-top: 8px;
+      ion-label{
+        font-weight: bold;
+      }
+
+    }
+
+    .status-task-project{
+      margin-top: 8px;
+    }
+
+    .status-project{
+      display: flex;
+      align-items: center;
+
+      .content-status{
+        display: flex;
+        flex-direction: column;
+      
+        ion-label{
+          font-weight: bold;
+          font-size: 13px;
+        }
+
+        ion-text{
+          font-weight: bold;
+        }
+
+      }
+    }
+
+    .task-project{
+      display: flex;
+      align-items: center;
+
+      .content-task{
+        display: flex;
+        flex-direction: column;
+        margin-left: 5px;
+      
+        ion-label{
+          font-weight: bold;
+          font-size: 13px;
+        }
+
+        ion-text{
+          font-weight: bold;
+          font-size: 15px;
+        }
+      }
+    }
+
+    .progress-task{
+      margin-top: 8px;
+      ion-label{
+        font-weight: bold;
+      }
+
+      .overlay-progress{
+        background-color: #EBEDF3;
+        height: 8px;
+        width: 100%;
+        border-radius: 10px;
+        .progress-value{
+          background-color: #55A9FF;
+          border-radius: 10px;
+          height: 8px;
+          width: 30%;
+        }
+      }
+    }
+  }
+
+  .manager-accept-request{
+    margin-top: 5px;
+    border-top: 1px solid gainsboro;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    ion-label{
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .manager{
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      ion-avatar{
+        width: 25px;
+        height: 25px;
+        margin: 5px;
+      }
+    }
+  }
+}
+
+.member{
+  display: flex;
+
+  .member-root{
+    height: 30px;
+    width: 30px;
+    border: 2px solid white;
+  }
+
+  .member-other{
+    height: 30px;
+    width: 30px;
+    margin-left: -8px;
+    border: 2px solid white;
+  }
+
+  .total-number{
+    background-color: #dfe4ea;
+    height: 30px;
+    width: 30px;
+    margin-left: -8px;
+    border: 2px solid white;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

@@ -1,0 +1,72 @@
+ion-card{
+  ion-card-header{
+    padding: 10px;
+
+    .name-user-request{
+      strong{
+        font-size: 18px;
+      }
+      ion-label{
+        font-size: 15px;
+      }
+    }
+  }
+
+  ion-card-content{
+    padding-top: 10px;
+    padding-bottom: 5px;
+
+    .content-request{
+      display: flex;
+      flex-direction: column;
+      .content-one{
+        font-size: 17px;
+      }
+
+      .content-two{
+        font-size: 15px;
+        margin-top: 5px;
+      }
+    }
+
+    .status-document{
+      margin-top: 10px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+
+      .content-status-document{
+        display: inline;
+        background-color: #E7F3E8;
+        padding: 8px 10px;
+        font-size: 17px;
+        color: #14AA24;
+        border-radius: 6px;
+      }
+    }
+
+    .manager-accept-request{
+      margin-top: 5px;
+      border-top: 1px solid gainsboro;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+  
+      ion-label{
+        font-weight: bold;
+        font-size: 16px;
+      }
+  
+      .manager{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        ion-avatar{
+          width: 25px;
+          height: 25px;
+          margin: 5px;
+        }
+      }
+    }
+  }
+}

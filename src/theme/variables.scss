@@ -74,6 +74,55 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+    // custom color
+    --ion-color-background: #E7EAED;
+    --ion-color-greendanger: #74b9ff;
+    --ion-color-citylight: #dfe6e9;
+    --ion-color-mintleaf: #00b894;
+    --ion-color-greensee: #16a085;
+    --ion-color-strompetrel: #8395a7;
+    --ion-color-fueltwon: #576574;
+    --ion-color-background: #E7EAED;
+    --ion-color-background: #E7EAED;
+    --ion-color-background: #E7EAED;
+    --ion-color-background: #E7EAED;
+    --ion-color-background: #E7EAED;
+    --ion-color-background: #E7EAED;
+    --ion-color-background: #E7EAED;
+    --ion-color-background: #E7EAED;
+    --ion-color-background: #E7EAED;
+    --ion-color-background: #E7EAED;
+    --ion-color-background: #E7EAED;
+
+}
+
+.ion-color-fueltwon{
+  --ion-color-base: var(--ion-color-fueltwon);
+}
+
+.ion-color-strompetrel{
+  --ion-color-base: var(--ion-color-strompetrel);
+}
+
+.ion-color-mintleaf{
+  --ion-color-base: var(--ion-color-mintleaf);
+}
+
+.ion-color-greensee{
+  --ion-color-base: var(--ion-color-greensee);
+}
+
+.ion-color-citylight{
+  --ion-color-base: var(--ion-color-citylight);
+}
+
+.ion-color-background{
+  --ion-color-base: var(--ion-color-background);
+}
+
+.ion-color-greendanger{
+  --ion-color-base: var(--ion-color-greendanger);
 }
 
 @media (prefers-color-scheme: dark) {
