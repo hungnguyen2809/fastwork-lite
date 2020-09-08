@@ -1,0 +1,61 @@
+ion-content{
+  --padding-top: 0px;
+}
+
+ion-header{
+  ion-label{
+    font-weight: bold;      
+  }
+  p{
+    margin: 0px;
+    font-size: 13px;
+  }
+}
+
+.activity{
+  padding: 25px 0px;
+  border-bottom: 1px solid gainsboro;
+  .days-activity{
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    margin: 0px 0px 15px 0px;
+    span{
+      background-color: #E2FFE7;
+      color: #21BF88;
+      border-radius: 5px;
+      padding: 7px 8px 6px 8px;
+    }
+  }
+  .content-activity{
+    display: flex;
+    .time{
+      font-weight: bold;
+      margin: 0px 5px;
+    }
+    .space-time-content{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 2px 5px;
+      
+      i{
+        font-size: 13px;
+        color: orange;
+      }
+      .lines-space{
+        margin-top: 3px;
+        background-color: #ced6e0;
+        width: 3px;
+        height: 100%;
+        min-height: 25px;
+      }
+    }
+    .content-primary{
+      margin-left: 5px;
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
+  }
+  
+}

@@ -1,0 +1,164 @@
+ion-header{
+  ion-title{
+    font-weight: bold;
+  }
+}
+
+ion-avatar{
+  max-width: 40px;
+  max-height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+}
+
+.comments{
+  margin: 16px;
+  .employee{
+    display: flex;
+  
+    .name-employee{
+      display: flex;
+      flex-direction: column;
+      margin-left: 10px;
+      ion-text{
+        font-size: 17px;
+        font-weight: bold;
+      }
+  
+      ion-label{
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        i{
+          margin: 0px 3px;
+          font-size: 5px;
+        }
+      }
+    }
+  }
+
+  .content-comment{
+    margin-top: 15px !important;
+    ion-text{
+      font-size: 15.5px;
+    }
+  }
+
+  .details-comment{
+    margin-top: 15px;
+    .header-comment{
+      display: flex;
+      .number-comment{
+        font-size: 14px;
+        background-color: #DDECDB;
+        padding: 6px 9px;
+        border-radius: 5px;
+        margin-right: 10px;
+        span{
+          color: #737373;
+        }
+        i{
+          margin-right: 5px;
+          color: #33C627;
+        }
+      }
+
+      .number-favorite{
+        font-size: 14px;
+        background-color: #F5E5F3;
+        padding: 6px 9px;
+        border-radius: 5px;
+        margin-right: 10px;
+        span{
+          color: #737373;
+        }
+        i{
+          margin-right: 5px;
+          color: #EC3535;
+        }
+      }
+    }
+
+    .reply-comment{
+      margin-top: 25px;
+      border-bottom: 1px solid gainsboro;
+      .content-reply{
+        display: flex;
+        margin-bottom: 10px;
+        .context{
+          margin-left: 15px;
+          .name-time-reply{
+            display: flex;
+            justify-content: space-between;
+            .name-time{
+              font-size: 14px;
+              display: flex;
+              align-items: center;
+              margin-bottom: 5px;
+              i{
+                margin: 5px;
+                font-size: 5px;
+                color: #737373;
+              }
+              span{
+                color: #737373;
+                font-size: 13px;
+              }
+            }
+            .btn-reply{
+              color: #37ABE9;
+              display: flex;
+              justify-content: flex-end;
+              font-size: 13px;
+            }
+          }
+          .context-reply{
+            font-size: 14px;
+            color: #737373;
+            line-height: 1.5;
+          }  
+        }
+      }
+    }
+
+    .send-comment{
+      display: flex;
+
+      .action-btn{
+        padding-top: 15px;
+
+        i{
+          padding: 6px;
+        }
+        .fa-paperclip{
+          color: #a5b1c2;
+        }
+        .fa-paper-plane{
+          color: #45aaf2;
+        }
+      }
+    }
+  }
+  
+  .content-comment{
+    margin-top: 10px;
+    font-size: 15px;
+    color: #000000;
+    line-height: 1.5;
+  }
+}
+
+.ripple-parent {
+  position: relative;
+  overflow: hidden;
+  padding: 6px 8px;
+  border-radius: 5px;
+}
+
+.space-card{
+  width: 100%;
+  height: 9px;
+  background-color: #dcdcdc;
+}
+
+

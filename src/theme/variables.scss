@@ -83,7 +83,7 @@
     --ion-color-greensee: #16a085;
     --ion-color-strompetrel: #8395a7;
     --ion-color-fueltwon: #576574;
-    --ion-color-background: #E7EAED;
+    --ion-color-nasupurple: #5f27cd;
     --ion-color-background: #E7EAED;
     --ion-color-background: #E7EAED;
     --ion-color-background: #E7EAED;
@@ -95,6 +95,10 @@
     --ion-color-background: #E7EAED;
     --ion-color-background: #E7EAED;
 
+}
+
+.ion-color-nasupurple{
+  --ion-color-base: var(--ion-color-nasupurple);
 }
 
 .ion-color-fueltwon{

@@ -1,0 +1,85 @@
+ion-card {
+	margin: 0px;
+  border-radius: 0px;
+
+  ion-avatar{
+    min-width: 40px;
+    min-height: 40px;
+    max-width: 40px;
+    max-height: 40px;
+  }
+
+	ion-card-header {
+		padding: 10px;
+
+		.task-project-manager {
+      padding: 0px;
+
+			ion-row, ion-col {
+				padding: 0px;
+      }
+
+      .employee{
+        display: flex;
+      
+        .infor-employee{
+          display: flex;
+          flex-direction: column;
+          margin-left: 10px;
+          ion-text{
+            font-size: 17px;
+            font-weight: bold;
+          }
+      
+          ion-label{
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            i{
+              margin: 0px 3px;
+              font-size: 5px;
+            }
+          }
+        }
+      }
+      
+			.action-project {
+        margin: 5px 0px 0px;
+				.size-action {
+					display: inline-block;
+					padding: 6px 8px;
+					margin: 3px;
+					border-radius: 5px;
+        }
+        
+				.icon-action {
+					background-color: #dfe4ea;
+					i {
+						margin: 0px;
+						color: #a4b0be;
+					}
+				}
+
+				.create-date {
+					background-color: #ffe2e5;
+					color: #f64e60;
+					font-weight: 700;
+				}
+
+				.status-project {
+					text-transform: uppercase;
+					background-color: #c9f7f5;
+					color: #1bc2ba;
+					font-weight: bold;
+				}
+			}
+    }
+  }
+}
+
+.ripple-parent {
+  position: relative;
+  overflow: hidden;
+  padding: 6px 8px;
+  border-radius: 5px;
+}

@@ -9,6 +9,10 @@ import { ComponentProjectOneComponent } from './component-project-one/component-
 import { ComponentProjectTwoComponent } from './component-project-two/component-project-two.component';
 import { ComponentWorkCardOneComponent } from './component-work-card-one/component-work-card-one.component';
 import { ComponentWorkCardTwoComponent } from './component-work-card-two/component-work-card-two.component';
+import { CardDemoComponent } from './card-demo/card-demo.component';
+import { CardThanhComponent } from './card-thanh/card-thanh.component';
+import { DetailWorkComponent } from './detail-work/detail-work.component';
+import { CommentForDetailsComponent } from './comment-for-details/comment-for-details.component';
 
 @NgModule({
   imports: [
@@ -23,7 +27,11 @@ import { ComponentWorkCardTwoComponent } from './component-work-card-two/compone
     ComponentProjectOneComponent,
     ComponentProjectTwoComponent,
     ComponentWorkCardOneComponent,
-    ComponentWorkCardTwoComponent
+    ComponentWorkCardTwoComponent,
+    CardDemoComponent,
+    CardThanhComponent,
+    DetailWorkComponent,
+    CommentForDetailsComponent
   ],
   declarations: [
     ComponentFormCardOneComponent,
@@ -32,7 +40,12 @@ import { ComponentWorkCardTwoComponent } from './component-work-card-two/compone
     ComponentProjectOneComponent,
     ComponentProjectTwoComponent,
     ComponentWorkCardOneComponent,
-    ComponentWorkCardTwoComponent
+    ComponentWorkCardTwoComponent,
+    CardDemoComponent,
+    CardThanhComponent,
+    DetailWorkComponent,
+    CommentForDetailsComponent
+
   ]
 })
 export class ComponentsModule {}
