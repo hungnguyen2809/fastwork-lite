@@ -5,6 +5,141 @@
 </ion-header>
 
 <ion-content>
-  <app-detail-work></app-detail-work>
-  <!-- <div class="space-card"></div> -->
+  <div class="header-details-work">
+    <ion-grid class="task-project-manager">
+      <ion-row>
+        <ion-col size="12" size-md="7">
+          <div class="project">
+            <ion-avatar>
+              <img src="./../../../assets/imgs/avatar_female.png" alt="">
+            </ion-avatar>
+            <div class="infor-project">
+              <ion-text color="dark">
+                Chris Muller, Develop Custommer lo
+              </ion-text>
+              <ion-label>
+                <p>
+                  <i class="fas fa-map-marker-alt" style="color: #0984e3;"></i>
+                  Ha Noi
+                </p>
+                <p>
+                  <i class="far fa-calendar-alt" style="color: #95afc0;"></i>
+                  09/01/2020
+                </p>
+                <p>
+                  <i class="fas fa-briefcase" style="color: #7158e2;"></i>
+                  Nguyễn Tiến Thành
+                </p>
+                <p>
+                  <i class="fas fa-envelope" style="color: #6ab04c;"></i>
+                  fw@fw.ek.com
+                </p>
+              </ion-label>
+              <div class="status-project size-action">
+                <span>Complete</span>
+              </div>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col class="action-project" size="12" size-md="5">
+          <ion-label color="medium">Thời gian: </ion-label>
+          <div class="date-time">
+            <div class="create-date size-action">
+              <span>10/01/2019</span>
+            </div>
+            <i class="fas fa-long-arrow-alt-right action-icon"></i>
+            <div class="expired-date size-action">
+              <span>20/02/2020</span>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div class="content-details-work">
+
+    <div class="description-work">
+      <ion-label color="medium">Mô tả:</ion-label>
+      <ion-text>
+        Tempora suscipit modi deleniti vel soluta, ratione, neces sitatibus hic vitae, ex temporibus nesciunt!
+      </ion-text>
+    </div>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-md="7">
+          <div class="processing-work">
+            <ion-label color="medium">
+              Tiến độ:
+            </ion-label>
+            <div class="process">
+              <ion-progress-bar value="0.6"></ion-progress-bar>
+              <div class="percent-task">
+                <span>60%</span>
+                <span>30/50</span>
+              </div>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col size="12" size-md="5">
+          <div class="employee-work">
+            <ion-label color="medium">
+              Thành viên tham gia:
+            </ion-label>
+            <div class="member">
+              <ion-avatar class="member-root">
+                <img src="./../../../assets/imgs/avatar.png" alt="">
+              </ion-avatar>
+              <ion-avatar class="member-other">
+                <img src="./../../../assets/imgs/anonymous_mask.png" alt="">
+              </ion-avatar>
+              <ion-avatar class="member-other">
+                <img src="./../../../assets/imgs/avatar_female.png" alt="">
+              </ion-avatar>
+              <ion-avatar class="member-other">
+                <img src="./../../../assets/imgs/person-male.png" alt="">
+              </ion-avatar>
+              <ion-avatar class="member-other">
+                <img src="./../../../assets/imgs/person_.png" alt="">
+              </ion-avatar>
+              <div class="total-number">
+                <ion-label>12+</ion-label>
+              </div>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <div class="list-task-work">
+      <ion-label color="medium">
+        Nhiệm vụ:
+      </ion-label>
+      <div class="list-task">
+        <ion-list lines="full" >
+          <ion-item>
+            <ion-checkbox color="success" checked="true" slot="start" indeterminate="false"size="small" mode="ios" disabled></ion-checkbox>
+            <ion-text>Task 1</ion-text>
+          </ion-item>
+          <ion-item>
+            <ion-checkbox color="success" checked="true" slot="start" indeterminate="false" size="small" mode="ios" disabled></ion-checkbox>
+            <ion-text>Task 2</ion-text>
+          </ion-item>
+          <ion-item>
+            <ion-checkbox color="danger" checked="false" slot="start" indeterminate="true" size="small" mode="ios" disabled></ion-checkbox>
+            <ion-text>Task 3</ion-text>
+          </ion-item>
+          <ion-item>
+            <ion-checkbox color="success" checked="true" slot="start" indeterminate="false" size="small" mode="ios" disabled></ion-checkbox>
+            <ion-text>Task 4</ion-text>
+          </ion-item>
+          <ion-item>
+            <ion-checkbox color="danger" checked="false" slot="start" indeterminate="true" size="small" mode="ios" disabled></ion-checkbox>
+            <ion-text>Task 5</ion-text>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+
+  </div>
 </ion-content>

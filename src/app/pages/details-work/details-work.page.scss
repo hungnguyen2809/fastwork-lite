@@ -4,8 +4,199 @@ ion-header{
   }
 }
 
-.space-card{
-  width: 100%;
-  height: 9px;
-  background-color: #dcdcdcdc;
+ion-avatar{
+  min-width: 40px;
+  min-height: 40px;
+  max-width: 40px;
+  max-height: 40px;
+}
+
+.header-details-work {
+  padding: 16px 16px 5px;
+  .task-project-manager {
+    padding: 0px;
+
+    ion-row, ion-col {
+      padding: 0px;
+    }
+
+    .size-action {
+      display: inline-block;
+      padding: 6px 8px 5px 8px;
+      margin: 5px;
+      border-radius: 5px;
+    }
+
+    .project{
+      display: flex;
+    
+      .infor-project{
+        display: flex;
+        flex-direction: column;
+        margin-left: 10px;
+
+        ion-text{
+          font-size: 18px;
+          font-weight: bold;
+        }
+    
+        ion-label{
+          font-size: 13px;
+          p{
+            display: inline-block;
+            margin-right: 10px;
+            color: #666666;
+          }
+        }
+
+        .status-project {
+          text-align: center;
+          text-transform: uppercase;
+          background-color: #c9f7f5;
+          color: #1bc2ba;
+          font-weight: bold;
+        } 
+      }
+    }
+    
+    .action-project {
+      margin: 15px 0px 0px;
+
+      ion-label{
+        font-weight: bold;
+      }
+
+      .date-time{
+        display: inline-block;
+        .action-icon{
+          margin: 0px 10px;
+        }
+  
+        .create-date {
+          background-color: #E1F0FF;
+          color: #3699FF;
+          font-weight: 700;
+        }
+  
+        .expired-date {
+          background-color: #ffe2e5;
+          color: #f64e60;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}
+
+.content-details-work{
+  ion-grid{
+    padding: 0px;
+    ion-col{
+      padding: 0px;
+    }
+  }
+  .description-work{
+    padding: 10px 16px;
+    display: flex;
+    flex-direction: column;
+    ion-label{
+      font-weight: bold;
+    }
+    ion-text{
+      font-size: 15px;
+      line-height: 1.5;
+    }
+  }
+
+  .employee-work{
+    padding: 10px 16px;
+    display: flex;
+    flex-direction: column;
+    ion-label{
+      font-weight: bold;
+    }
+    .member{
+      margin-top: 5px;
+      display: flex;
+      ion-avatar{
+        min-width: 35px;
+        min-height: 35px;
+        max-width: 35px;
+        max-height: 35px;
+        background-color: #ffff;
+      }
+      .member-root{
+        height: 30px;
+        width: 30px;
+        border: 2px solid white;
+      }
+      .member-other{
+        height: 30px;
+        width: 30px;
+        margin-left: -8px;
+        border: 2px solid white;
+      }
+      .total-number{
+        background-color: #dfe4ea;
+        height: 35px;
+        width: 35px;
+        margin-left: -8px;
+        border: 2px solid white;
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+        font-weight: bold;
+      }
+    }
+  }
+  .processing-work{
+    padding: 10px 16px;
+    display: flex;
+    flex-direction: column;
+    ion-label{
+      font-weight: bold;
+    }
+    .process{
+      .percent-task{
+        display: flex;
+        justify-content: space-between;
+        span{
+          margin: 3px;
+        }
+      }
+      ion-progress-bar{
+        margin-top: 2px;
+        height: 5px;
+      }
+    }
+  }
+
+  .list-task-work{
+    padding: 10px 16px;
+    display: flex;
+    flex-direction: column;
+    ion-label{
+      font-weight: bold;
+    }
+    .list-task{
+      ion-list{
+        padding: 0px;
+        ion-checkbox{
+          opacity: 1;
+        }
+      }
+    }
+
+  }
+
+
+  
+}
+
+.space-dot{
+  font-size: 5px;
+  margin: 5px;
+  color: #bdc3c7;
 }

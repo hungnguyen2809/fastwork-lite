@@ -33,18 +33,16 @@ ion-card {
       
           ion-label{
             font-size: 14px;
-            display: flex;
-            align-items: center;
-            i{
-              margin: 0px 3px;
-              font-size: 5px;
+            p{
+              display: inline-block;
+              margin-right: 10px;
             }
           }
         }
       }
       
 			.action-project {
-        margin: 5px 0px 0px;
+        margin: 10px 0px 0px;
 				.size-action {
 					display: inline-block;
 					padding: 6px 8px;
@@ -74,6 +72,10 @@ ion-card {
 				}
 			}
     }
+  }
+
+  ion-card-content{
+    
   }
 }
 

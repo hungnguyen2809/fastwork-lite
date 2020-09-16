@@ -9,18 +9,6 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: "form",
-        loadChildren: () => import('./../form/form.module').then( m => m.FormPageModule)
-      },
-      {
-        path: "work",
-        loadChildren: () => import('./../work/work.module').then( m => m.WorkPageModule)
-      },
-      {
-        path: "project",
-        loadChildren: () => import('./../project/project.module').then( m => m.ProjectPageModule)
-      },
-      {
         path: 'details-work',
         loadChildren: () => import('./../details-work/details-work.module').then( m => m.DetailsWorkPageModule)
       },

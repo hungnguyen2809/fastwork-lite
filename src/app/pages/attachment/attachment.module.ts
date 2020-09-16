@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { AttachmentPageRoutingModule } from './attachment-routing.module';
 
 import { AttachmentPage } from './attachment.page';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AttachmentPageRoutingModule
+    AttachmentPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [AttachmentPage]
 })

@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { ComponentFormCardThreeComponent } from './component-form-card-three.component';
+import { ApplicationFormPage } from './application-form.page';
 
-describe('ComponentFormCardThreeComponent', () => {
-  let component: ComponentFormCardThreeComponent;
-  let fixture: ComponentFixture<ComponentFormCardThreeComponent>;
+describe('ApplicationFormPage', () => {
+  let component: ApplicationFormPage;
+  let fixture: ComponentFixture<ApplicationFormPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ComponentFormCardThreeComponent ],
+      declarations: [ ApplicationFormPage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ComponentFormCardThreeComponent);
+    fixture = TestBed.createComponent(ApplicationFormPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

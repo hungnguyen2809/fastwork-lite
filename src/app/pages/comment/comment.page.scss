@@ -86,6 +86,7 @@ ion-avatar{
         display: flex;
         margin-bottom: 10px;
         .context{
+          width: 100%;
           margin-left: 15px;
           .name-time-reply{
             display: flex;
@@ -157,8 +158,7 @@ ion-avatar{
 
 .space-card{
   width: 100%;
-  height: 9px;
-  background-color: #dcdcdc;
+  height: 6px;
+  background-color: #bdc3c7;
 }
-
 
