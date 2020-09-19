@@ -84,10 +84,10 @@
     --ion-color-strompetrel: #8395a7;
     --ion-color-fueltwon: #576574;
     --ion-color-nasupurple: #5f27cd;
-    --ion-color-background: #E7EAED;
-    --ion-color-background: #E7EAED;
-    --ion-color-background: #E7EAED;
-    --ion-color-background: #E7EAED;
+    --ion-color-spiced: #F7E3C4;
+    --ion-color-quince: #D05B0E;
+    --ion-color-mandarin: #e55039;
+    --ion-color-tealgreen: #05c46b;
     --ion-color-background: #E7EAED;
     --ion-color-background: #E7EAED;
     --ion-color-background: #E7EAED;
@@ -95,6 +95,22 @@
     --ion-color-background: #E7EAED;
     --ion-color-background: #E7EAED;
 
+}
+
+.ion-color-tealgreen{
+  --ion-color-base: var(--ion-color-tealgreen);
+}
+
+.ion-color-mandarin{
+  --ion-color-base: var(--ion-color-mandarin);
+}
+
+.ion-color-quince{
+  --ion-color-base: var(--ion-color-quince);
+}
+
+.ion-color-spiced{
+  --ion-color-base: var(--ion-color-spiced);
 }
 
 .ion-color-nasupurple{

@@ -24,3 +24,20 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+@import "./theme/fonts.scss";
+
+
+.alert-see-application-form-employee{
+  font-family: 'Open Sans Regular';
+  .alert-head {
+    text-align: center;
+    h2{
+      margin: 0px;
+    }
+  }
+
+  .alert-button-group{
+    display: none;
+  }
+}

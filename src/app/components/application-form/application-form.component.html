@@ -1,0 +1,67 @@
+<div class="application-form">
+  <div class="header-application-form">
+    <ion-avatar>
+      <img [src]="data.avatar" alt="">
+    </ion-avatar>
+    <div class="title-state-application-form">
+      <div class="title-application-form">
+        <ion-text>
+          {{ data.name }} - {{ data.titleAF | substringTitleApplicationForm }}
+          <ng-container [ngSwitch]="data.state">
+            <i class="far fa-check-circle" *ngSwitchCase="1"></i>
+            <i class="fas fa-minus-circle" *ngSwitchCase="2"></i>
+            <i class="far fa-times-circle" *ngSwitchCase="3"></i>
+          </ng-container>
+        </ion-text>
+        <ion-label color="medium">
+          <ion-icon name="calendar-outline"></ion-icon>
+          <span>{{ data.createDate }}</span>
+        </ion-label>
+      </div>
+    </div>
+  </div>
+  <div class="content-application-form">
+    <div class="time-request">
+      <p>
+        <ion-icon name="time-outline"></ion-icon>
+        <ion-text>
+          {{ data.time }} - {{ data.date }}
+        </ion-text>
+      </p>
+    </div>
+    <div class="time-request">
+      <p>
+        <ion-icon name="layers-outline"></ion-icon>
+        <ion-text>
+          {{ data.reason }}
+        </ion-text>
+      </p>
+    </div>
+    <div class="time-request">
+      <p>
+        <ion-icon name="reader-outline"></ion-icon>
+        <ion-text color="medium">
+          {{ data.description.length  > 0 ? data.description : 'Không có mô tả' }}
+        </ion-text>
+      </p>
+    </div>
+  </div>  
+  <div class="action-application-form" [ngSwitch]="isManager">
+    <ng-container *ngSwitchCase="true">
+      <ion-button color="tealgreen" mode="md" *ngIf="data.state == 2">Đồng ý</ion-button>
+      <ion-button color="danger" mode="md" *ngIf="data.state == 2">Từ chối</ion-button>
+      <ion-button color="warning" mode="md" *ngIf="data.state == 1 || data.state == 3">Hủy bỏ</ion-button>
+    </ng-container>
+    <ng-container *ngSwitchCase="false">
+      <div class="manager-accept" *ngIf="data.manager != null">
+        <ion-avatar>
+          <img [src]="data.manager.avatar" alt="">
+        </ion-avatar>
+        <ion-label>
+          {{ data.manager.name }}
+        </ion-label>
+      </div>
+    </ng-container>
+  </div>
+  <div class="lines-space"></div>
+</div>

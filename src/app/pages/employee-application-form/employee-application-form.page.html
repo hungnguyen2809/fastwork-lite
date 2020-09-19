@@ -1,0 +1,102 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Đơn từ</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="information-days">
+    <ion-label color="quince">Bạn còn 5 ngày nghỉ phép</ion-label>
+    <div class="btn-seen-form">
+      <ion-button color="mandarin" mode="md">Xem</ion-button>
+    </div>
+  </div>
+
+  <div class="menu-application-form">
+    <ion-grid >
+      <ion-row>
+        <ion-col size="12" >
+          <ion-row>
+            <ion-col size="3">
+              <div class="component-form">
+                <ion-avatar>
+                  <img src="./../../../assets/icon/nghi-phep.png" alt="">
+                </ion-avatar>
+                <ion-label>Nghỉ phép</ion-label>
+              </div>
+            </ion-col>
+            <ion-col size="3">
+              <div class="component-form">
+                <ion-avatar>
+                  <img src="./../../../assets/icon/vang-mat.png" alt="">
+                </ion-avatar>
+                <ion-label>Văng mặt</ion-label>
+              </div>
+            </ion-col>
+            <ion-col size="3">
+              <div class="component-form">
+                <ion-avatar>
+                  <img src="./../../../assets/icon/tang-ca.png" alt="">
+                </ion-avatar>
+                <ion-label>Tăng ca</ion-label>
+              </div>
+            </ion-col>
+            <ion-col size="3">
+              <div class="component-form">
+                <ion-avatar>
+                  <img src="./../../../assets/icon/lam-them.png" alt="">
+                </ion-avatar>
+                <ion-label>Làm thêm</ion-label>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col size="12" >
+          <ion-row>
+            <ion-col size="3">
+              <div class="component-form">
+                <ion-avatar>
+                  <img src="./../../../assets/icon/cong-tac.png" alt="">
+                </ion-avatar>
+                <ion-label>Công tác</ion-label>
+              </div>
+            </ion-col>
+            <ion-col size="3">
+              <div class="component-form">
+                <ion-avatar>
+                  <img src="./../../../assets/icon/nghi-che-do.png" alt="">
+                </ion-avatar>
+                <ion-label>Chế độ</ion-label>
+              </div>
+            </ion-col>
+            <ion-col size="3">
+              <div class="component-form">
+                <ion-avatar>
+                  <img src="./../../../assets/icon/doi-ca.png" alt="">
+                </ion-avatar>
+                <ion-label>Đổi ca</ion-label>
+              </div>
+            </ion-col>
+            <ion-col size="3">
+              <div class="component-form">
+                <ion-avatar>
+                  <img src="./../../../assets/icon/giai-trinh-cham-cong.png" alt="">
+                </ion-avatar>
+                <ion-label>Giải trình</ion-label>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+
+  <div class="application-form-request">
+    <ion-label (click)="onSeeByDayWeekMonth()">
+      Đơn trong {{titleSeeFor.title}}
+      <ion-icon name="chevron-down-outline"></ion-icon>
+    </ion-label>
+    <application-form [manager]="false" [data]="item" *ngFor="let item of data"></application-form>
+  </div>
+</ion-content>
