@@ -41,3 +41,9 @@
     display: none;
   }
 }
+
+.picker-button.sc-ion-picker-md, .picker-button.ion-activated.sc-ion-picker-md{
+  font-size: 15px;
+  text-transform: initial;
+  font-family: 'Open Sans Regular';
+}

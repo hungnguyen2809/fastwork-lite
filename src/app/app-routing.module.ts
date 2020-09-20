@@ -20,7 +20,11 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'manager-application-form',
+    loadChildren: () => import('./pages/filter-application-form/filter-application-form.module').then( m => m.FilterApplicationFormPageModule)
+  },
+  {
+    path: '',
+    redirectTo: 'filter-application-form',
     pathMatch: 'full'
   },
 ];

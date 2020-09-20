@@ -1,0 +1,33 @@
+<ion-header mode="ios">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" text="" icon="chevron-back" color="dark"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end" class="btn-filter">
+      <ion-button (click)="onShowFilter()">
+        <ion-label color="dark">Bộ lọc</ion-label>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Tìm kiếm</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="sort-by">
+    <ion-chip>
+      <ion-label>Loại đơn</ion-label>
+      <ion-icon name="chevron-down-outline"></ion-icon>
+    </ion-chip>
+    <ion-chip class="item-actived">
+      <ion-label>Đang chờ</ion-label>
+    </ion-chip>
+    <ion-chip>
+      <ion-label>Đồng ý</ion-label>
+    </ion-chip>
+    <ion-chip>
+      <ion-label>Từ chối</ion-label>
+    </ion-chip>
+  </div>
+
+  <application-form [data]="item" [manager]="true" *ngFor="let item of data"></application-form>
+</ion-content>

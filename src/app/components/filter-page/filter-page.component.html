@@ -1,0 +1,79 @@
+<ion-header mode="ios">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="onCloseFilter()" color="dark">
+        <ion-icon name="close" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Lọc theo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="full" mode="md">
+    <ion-list-header color="light">
+      Ngày
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Từ: </ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" placeholder="Chọn ngày" cancelText="Hủy" doneText="Đồng ý"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Đến: </ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" placeholder="Chọn ngày" cancelText="Hủy" doneText="Đồng ý"></ion-datetime>
+    </ion-item>
+    
+    <ion-list-header color="light">
+      Trạng thái
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Đồng ý</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Đang chờ</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Hủy bỏ</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-list-header color="light">
+      Loại đơn
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Xin nghỉ phép</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Xin vắng mặt</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Xin tăng ca</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Xin công tác</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Xin chế độ</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Xin đổi ca</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Xin giải trình chấm công</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer class="ion-no-border ion-padding">
+  <ion-button color="tealgreen" expand="block" mode="ios">
+    Áp dụng
+  </ion-button>
+</ion-footer>

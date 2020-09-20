@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ApplicationFormComponent } from './application-form/application-form.component';
 import { SubstringTitleApplicationFormPipe } from '../pipes/substring-title-application-form.pipe';
-
+import { FilterPageComponent } from './filter-page/filter-page.component';
 
 
 @NgModule({
@@ -14,11 +14,12 @@ import { SubstringTitleApplicationFormPipe } from '../pipes/substring-title-appl
     CommonModule
   ],
   exports: [
-    ApplicationFormComponent
+    ApplicationFormComponent,
   ],
   declarations: [
     ApplicationFormComponent,
-    SubstringTitleApplicationFormPipe
+    SubstringTitleApplicationFormPipe,
+    FilterPageComponent
   ]
 })
 export class ComponentsModule {}

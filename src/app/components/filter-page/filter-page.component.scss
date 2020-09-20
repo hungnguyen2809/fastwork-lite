@@ -1,0 +1,32 @@
+ion-header{
+  ion-toolbar{
+    --padding-start: 10px;
+    ion-title{
+      font-family: "Open Sans SemiBold";
+      font-size: 17px;
+    }
+  }
+}
+
+ion-content{
+  ion-list{
+    padding-bottom: 0px;
+    
+    ion-list-header{
+      font-family: "Open Sans Bold";
+      font-size: 16px;
+    }
+
+    ion-label{
+      font-family: "Open Sans Regular";
+    }
+  }
+}
+
+ion-footer{
+  ion-button{
+    font-family: "Open Sans SemiBold";
+    text-transform: initial;
+    --border-radius: 5px !important;
+  }
+}
