@@ -1,6 +1,10 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
 
+:root{
+  --ion-font-family: "Open Sans Regular";
+}
+
 /** Ionic CSS Variables **/
 :root {
   /** primary **/
@@ -88,13 +92,17 @@
     --ion-color-quince: #D05B0E;
     --ion-color-mandarin: #e55039;
     --ion-color-tealgreen: #05c46b;
-    --ion-color-background: #E7EAED;
+    --ion-color-placeholder: #808080;
     --ion-color-background: #E7EAED;
     --ion-color-background: #E7EAED;
     --ion-color-background: #E7EAED;
     --ion-color-background: #E7EAED;
     --ion-color-background: #E7EAED;
 
+}
+
+.ion-color-placeholder{
+  --ion-color-base: var(--ion-color-placeholder);
 }
 
 .ion-color-tealgreen{

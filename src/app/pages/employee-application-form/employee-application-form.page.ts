@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { AlertController } from "@ionic/angular";
+import { Router } from '@angular/router';
+import { AlertController, NavController } from "@ionic/angular";
 import { ApplicationForm } from "src/app/components/application-form/application-form.component";
 import { DataService } from "src/app/services/data.service";
 
@@ -14,7 +15,9 @@ export class EmployeeApplicationFormPage implements OnInit {
 
 	constructor(
 		private alertCtrl: AlertController,
-		private dataService: DataService
+		private dataService: DataService,
+		private navCtrl: NavController,
+		private router: Router
 	) {}
 
 	ngOnInit() {
@@ -68,5 +71,13 @@ export class EmployeeApplicationFormPage implements OnInit {
 			],
 		});
 		alertFind.present();
+	}
+
+	onCreateAF(type: number){
+		this.navCtrl.navigateForward('create-application-form', {
+			state: {
+				type: type
+			}
+		});
 	}
 }

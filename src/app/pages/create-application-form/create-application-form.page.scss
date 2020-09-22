@@ -1,0 +1,62 @@
+ion-toolbar{
+  --padding-start: 10px;
+}
+
+.information-day-application-form{
+  // background-color: #F7E3C4;
+  margin: 10px;
+  border-radius: 5px;
+  ion-grid{
+    padding: 0px;
+    ion-col{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 15px;
+      font-family: "Open Sans SemiBold";
+    }
+  }
+}
+
+.content-appication-form{
+  ion-list{
+    padding: 10px 0px 0px;
+    ion-list-header{
+      font-family: "Open Sans SemiBold";
+      font-size: 16px;
+
+      ion-icon{
+        font-size: 8px;
+        margin-top: -6px;
+      }
+    }
+    ion-item{
+      font-size: 15px;
+    }
+  }
+}
+
+.general-application-form{
+  ion-list{
+    padding: 0px;
+    ion-list-header{
+      font-family: "Open Sans SemiBold";
+      font-size: 16px;
+    }
+    ion-item{
+      font-size: 15px;
+    }
+  }
+}
+
+.icon-required{
+  font-size: 8px;
+  margin-top: -6px;
+  margin-left: 2px;
+}
+
+.btn-submit{
+  ion-button{
+    text-transform: initial;
+  }
+}
