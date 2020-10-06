@@ -93,12 +93,20 @@
     --ion-color-mandarin: #e55039;
     --ion-color-tealgreen: #05c46b;
     --ion-color-placeholder: #808080;
-    --ion-color-background: #E7EAED;
-    --ion-color-background: #E7EAED;
+    --ion-color-cyanite: #0abde3;
+    --ion-color-amour: #ee5253;
     --ion-color-background: #E7EAED;
     --ion-color-background: #E7EAED;
     --ion-color-background: #E7EAED;
 
+}
+
+.ion-color-amour{
+  --ion-color-base: var(--ion-color-amour);
+}
+
+.ion-color-cyanite{
+  --ion-color-base: var(--ion-color-cyanite);
 }
 
 .ion-color-placeholder{

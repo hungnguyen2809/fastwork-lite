@@ -20,32 +20,12 @@
       </div>
     </div>
   </div>
-  <div class="content-application-form">
-    <div class="time-request">
-      <p>
-        <ion-icon name="time-outline"></ion-icon>
-        <ion-text>
-          {{ data.time }} - {{ data.date }}
-        </ion-text>
-      </p>
-    </div>
-    <div class="time-request">
-      <p>
-        <ion-icon name="layers-outline"></ion-icon>
-        <ion-text>
-          {{ data.reason }}
-        </ion-text>
-      </p>
-    </div>
-    <div class="time-request">
-      <p>
-        <ion-icon name="reader-outline"></ion-icon>
-        <ion-text color="medium">
-          {{ data.description.length  > 0 ? data.description : 'Không có mô tả' }}
-        </ion-text>
-      </p>
-    </div>
-  </div>  
+
+  <content-application-form
+    [loaiDon]="2"
+    [showDescription]="showDesc"
+  ></content-application-form>
+  
   <div class="action-application-form" [ngSwitch]="isManager">
     <ng-container *ngSwitchCase="true">
       <ion-button color="tealgreen" mode="md" *ngIf="data.state == 2">Đồng ý</ion-button>

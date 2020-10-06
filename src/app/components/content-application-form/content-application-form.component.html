@@ -1,0 +1,267 @@
+<ng-container [ngSwitch]="loaiDon">
+  <!-- -----------1----------------- -->
+  <div class="content-application-form" *ngSwitchCase="1">
+    <div class="content-request">
+      <p>
+        <ion-icon name="time-outline"></ion-icon>
+        <ion-text>Ca sáng - Nửa ca sau </ion-text>
+      </p>
+    </div>
+    <div class="content-request">
+      <p>
+        <ion-icon name="calendar-outline"></ion-icon>
+        <ion-text>21/10/2020</ion-text>
+      </p>
+    </div>
+    <div class="content-request">
+      <p>
+        <ion-icon name="layers-outline"></ion-icon>
+        <ion-text>Nghỉ ốm</ion-text>
+      </p>
+    </div>
+    <div class="content-request">
+      <p>
+        <ion-icon name="card-outline"></ion-icon>
+        <ion-text>Không lương</ion-text>
+      </p>
+    </div>
+    <div class="content-request" *ngIf="showDesc">
+      <p>
+        <ion-icon name="reader-outline"></ion-icon>
+        <ion-text color="medium">Anh duyệt cho em với </ion-text>
+      </p>
+    </div>
+  </div> 
+  <!-- -----------2----------------- -->
+  <div class="content-application-form" *ngSwitchCase="2">
+    <div class="content-request">
+      <p>
+        <ion-icon name="time-outline"></ion-icon>
+        <ion-text>Hành chính</ion-text>
+      </p>
+    </div>
+    <div class="content-request">
+      <p>
+        <ion-icon name="calendar-outline"></ion-icon>
+        <ion-text>21/10/2020</ion-text>
+      </p>
+    </div>
+    <div class="content-request">
+      <p>
+        <ion-icon name="alarm-outline"></ion-icon>
+        <ion-text>08:00 - 09:00</ion-text>
+      </p>
+    </div>
+    <div class="content-request">
+      <p>
+        <ion-icon name="layers-outline"></ion-icon>
+        <ion-text>Đi muộn làm hồ sơ thủ tục công ty</ion-text>
+      </p>
+    </div>
+    <div class="content-request" *ngIf="showDesc">
+      <p>
+        <ion-icon name="reader-outline"></ion-icon>
+        <ion-text color="medium">Không có mô tả</ion-text>
+      </p>
+    </div>
+  </div> 
+  
+  <!-- -----------3----------------- -->
+  <div class="content-application-form" *ngSwitchCase="3">
+    <div class="content-request">
+      <p>
+        <ion-icon name="time-outline"></ion-icon>
+        <ion-text>Ngày nghỉ</ion-text>
+      </p>
+    </div>
+    <div class="content-request">
+      <p>
+        <ion-icon name="calendar-outline"></ion-icon>
+        <ion-text>21/10/2020</ion-text>
+      </p>
+    </div>
+    <div class="content-request" *ngIf="showDesc">
+      <p>
+        <ion-icon name="reader-outline"></ion-icon>
+        <ion-text color="medium">Không có mô tả</ion-text>
+      </p>
+    </div>
+  </div> 
+
+  <!-- -----------5----------------- -->
+  <div class="content-application-form" *ngSwitchCase="4">
+    <div class="content-request">
+      <p>
+        <ion-icon name="time-outline"></ion-icon>
+        <ion-text>Ca sáng</ion-text>
+      </p>
+    </div>
+    <div class="content-request">
+      <p>
+        <ion-icon name="calendar-outline"></ion-icon>
+        <ion-text>21/10/2020</ion-text>
+      </p>
+    </div>
+    <div class="content-request">
+      <p>
+        <ion-icon name="alarm-outline"></ion-icon>
+        <ion-text>08:00 - 09:00</ion-text>
+      </p>
+    </div>
+    <div class="content-request">
+      <p>
+        <ion-icon name="document-text-outline"></ion-icon>
+        <ion-text>Không ghi chú !</ion-text>
+      </p>
+    </div>
+    <div class="content-request" *ngIf="showDesc">
+      <p>
+        <ion-icon name="reader-outline"></ion-icon>
+        <ion-text color="medium">Không có mô tả</ion-text>
+      </p>
+    </div>
+  </div>
+
+  <!-- -----------5----------------- -->
+  <div class="content-application-form" *ngSwitchCase="5">
+    <div class="content-request">
+      <p>
+        <ion-icon name="time-outline"></ion-icon>
+        <ion-text>Ca sáng</ion-text>
+      </p>
+    </div>
+    <div class="content-request">
+      <p>
+        <ion-icon name="calendar-outline"></ion-icon>
+        <ion-text>21/10/2020</ion-text>
+      </p>
+    </div>
+    <div class="content-request">
+      <p>
+        <ion-icon name="location-outline"></ion-icon>
+        <ion-text>Tòa nhà Lotus 2</ion-text>
+      </p>
+    </div>
+    <div class="content-request" *ngIf="showDesc">
+      <p>
+        <ion-icon name="reader-outline"></ion-icon>
+        <ion-text color="medium">Không có mô tả</ion-text>
+      </p>
+    </div>
+  </div>
+
+  <!-- -----------6----------------- -->
+  <div class="content-application-form" *ngSwitchCase="6">
+    <div class="content-request">
+      <p>
+        <ion-icon name="hourglass-outline"></ion-icon>
+        <ion-text>09:00</ion-text>
+      </p>
+    </div>
+    <div class="content-request">
+      <p>
+        <ion-icon name="speedometer-outline"></ion-icon>
+        <ion-text>16:00</ion-text>
+      </p>
+    </div>
+    <div class="content-request">
+      <p>
+        <ion-icon name="calendar-outline"></ion-icon>
+        <ion-text>21/10/2020 - 21/11/2020</ion-text>
+      </p>
+    </div>
+    <div class="content-request">
+      <p>
+        <ion-icon name="layers-outline"></ion-icon>
+        <ion-text>Nuôi con nhỏ dưới 12 tháng</ion-text>
+      </p>
+    </div>
+    <div class="content-request" *ngIf="showDesc">
+      <p>
+        <ion-icon name="reader-outline"></ion-icon>
+        <ion-text color="medium">Không có mô tả</ion-text>
+      </p>
+    </div>
+  </div>
+
+  <!-- -----------7----------------- -->
+  <div class="content-application-form" *ngSwitchCase="7">
+    <div class="content-request">
+      <p>
+        <ion-icon name="calendar-outline"></ion-icon>
+        <ion-text>21/10/2020</ion-text>
+      </p>
+    </div>
+    <div class="content-request">
+      <p>
+        <ion-icon name="sync-outline"></ion-icon>
+        <ion-text>22/10/2020</ion-text>
+      </p>
+    </div>
+    <br>
+    <div class="content-request">
+      <p>
+        <ion-icon name="briefcase-outline"></ion-icon>
+        <ion-text>Ca hành chính</ion-text>
+      </p>
+    </div>
+    <div class="content-request">
+      <p>
+        <ion-icon name="sync-outline"></ion-icon>
+        <ion-text>Ca chiều</ion-text>
+      </p>
+    </div>
+    <div class="content-request">
+      <p>
+        <ion-icon name="person-add-outline"></ion-icon>
+        <ion-text>Nguyễn Tiến Thành</ion-text>
+      </p>
+    </div>
+    <div class="content-request" *ngIf="showDesc">
+      <p>
+        <ion-icon name="reader-outline"></ion-icon>
+        <ion-text color="medium">Không có mô tả</ion-text>
+      </p>
+    </div>
+  </div>
+
+  <!-- -----------8----------------- -->
+  <div class="content-application-form" *ngSwitchCase="8">
+    <div class="content-request">
+      <p>
+        <ion-icon name="calendar-outline"></ion-icon>
+        <ion-text>21/10/2020</ion-text>
+      </p>
+    </div>
+    <div class="content-request">
+      <p>
+        <ion-icon name="time-outline"></ion-icon>
+        <ion-text>09:00</ion-text>
+      </p>
+    </div>
+    <div class="content-request">
+      <p>
+        <ion-icon name="git-branch-outline"></ion-icon>
+        <ion-text>Vào</ion-text>
+      </p>
+    </div>
+    <div class="content-request">
+      <p>
+        <ion-icon name="hourglass-outline"></ion-icon>
+        <ion-text>Hành chính</ion-text>
+      </p>
+    </div>
+    <div class="content-request">
+      <p>
+        <ion-icon name="layers-outline"></ion-icon>
+        <ion-text>Không chấm công được</ion-text>
+      </p>
+    </div>
+    <div class="content-request" *ngIf="showDesc">
+      <p>
+        <ion-icon name="reader-outline"></ion-icon>
+        <ion-text color="medium">Không có mô tả</ion-text>
+      </p>
+    </div>
+  </div>
+</ng-container>

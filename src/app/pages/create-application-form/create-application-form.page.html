@@ -1,463 +1,94 @@
-<ion-header mode="ios">
-  <ion-toolbar>
+<ion-header>
+  <ion-toolbar >
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/" icon="close" text="" color="dark"></ion-back-button>
+      <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ titleAF }}</ion-title>
+    <ion-title>{{ tieuDeDon }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="information-day-application-form" [ngSwitch]="typeAF">
+  <div class="information-application-form" [ngSwitch]="loaiDon">
     <ion-grid *ngSwitchCase="1">
       <ion-row>
         <ion-col>
-          <ion-label >Tổng phép</ion-label>
-          <ion-text >10</ion-text>
+          <ion-label color="quince">Tổng phép</ion-label>
+          <ion-text color="mandarin">10</ion-text>
         </ion-col>
         <ion-col>
-          <ion-label >Đã nghỉ</ion-label>
-          <ion-text >3</ion-text>
+          <ion-label color="quince">Đã nghỉ</ion-label>
+          <ion-text color="mandarin">3</ion-text>
         </ion-col>
         <ion-col>
-          <ion-label >Còn lại</ion-label>
-          <ion-text >7</ion-text>
+          <ion-label color="quince">Còn lại</ion-label>
+          <ion-text color="mandarin">7</ion-text>
         </ion-col>
       </ion-row>
     </ion-grid>
     <ion-grid *ngSwitchCase="2">
       <ion-row>
         <ion-col>
-          <ion-label >Tính công</ion-label>
-          <ion-text >Không</ion-text>
+          <ion-label color="quince">Tính công</ion-label>
+          <ion-text color="mandarin">Không</ion-text>
         </ion-col>
         <ion-col>
-          <ion-label >Phạt tiền</ion-label>
-          <ion-text >Không</ion-text>
+          <ion-label color="quince">Phạt tiền</ion-label>
+          <ion-text color="mandarin">Không</ion-text>
         </ion-col>
         <ion-col>
-          <ion-label >Yêu cầu chốt</ion-label>
-          <ion-text >Không</ion-text>
+          <ion-label color="quince">Yêu cầu chốt</ion-label>
+          <ion-text color="mandarin">Không</ion-text>
         </ion-col>
       </ion-row>
     </ion-grid>
   </div>
 
-  <div class="content-appication-form" [ngSwitch]="typeAF">
-    <ion-list lines="full" mode="md" *ngSwitchCase="1">
-      <ion-list-header color="light">
-        Ngày <ion-icon name="medical" color="danger" class="icon-required"></ion-icon>
+  <!-- Nội dung đơn -->
+  <div class="design-form">
+    <ion-list lines="full" mode="md">
+      <ion-list-header color="light" class="btn-add-af">
+        <ion-label>Thông tin đơn</ion-label>
+        <ion-text color="primary" class="">
+          <div class="ion-activatable ripple-parent" (click)="onCreateAF()">
+            Thêm
+            <ion-ripple-effect></ion-ripple-effect>
+          </div>
+        </ion-text>
       </ion-list-header>
-      <ion-item>
-        <ion-datetime displayFormat="DD/MM/YYYY" placeholder="Chọn ngày" cancelText="Hủy" doneText="Đồng ý"></ion-datetime>
-      </ion-item>
+
+      <ion-item-sliding #itemSliding *ngFor="let don of dataDonTu; let viTri = index">
+        <ion-item>
+          <content-application-form 
+            [loaiDon]="loaiDon" 
+            [data]="don"
+            [showDescription]="false"  
+          ></content-application-form>
+        </ion-item>
       
-      <ion-list-header color="light">
-        Ca được phân
-      </ion-list-header>
-      <ion-item>
-        <ion-label>Hành chính</ion-label>
-      </ion-item>
-      
-      <ion-list-header color="light">
-        Ca <ion-icon name="medical" color="danger" class="icon-required"></ion-icon>
-      </ion-list-header>
-      <ion-radio-group value="full">
-        <ion-item>
-          <ion-label>Cả ngày</ion-label>
-          <ion-radio slot="start" value="full"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>Nửa ca đầu</ion-label>
-          <ion-radio slot="start" value="start"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>Nửa ca sau</ion-label>
-          <ion-radio slot="start" value="end"></ion-radio>
-        </ion-item>
-      </ion-radio-group>
+        <ion-item-options side="end">
+          <ion-item-option color="warning" (click)="onEditAF(don, itemSliding)">Sửa</ion-item-option>
+          <ion-item-option color="danger" (click)="onDeleteAF(viTri, itemSliding)">Xóa</ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
 
-      <ion-list-header color="light">
-        Lý do <ion-icon name="medical" color="danger" class="icon-required"></ion-icon>
-      </ion-list-header>
-      <ion-radio-group value="1">
-        <ion-item>
-          <ion-label>Phép năm</ion-label>
-          <ion-radio slot="start" value="1"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>Nghỉ không lương</ion-label>
-          <ion-radio slot="start" value="2"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>Nghỉ thai sản</ion-label>
-          <ion-radio slot="start" value="3"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>Nghỉ kết hôn</ion-label>
-          <ion-radio slot="start" value="4"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>Nghỉ tang lễ (Bố, mẹ, con)</ion-label>
-          <ion-radio slot="start" value="5"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>Nghỉ tang lễ (Ông, bà, anh chị em ruột)</ion-label>
-          <ion-radio slot="start" value="6"></ion-radio>
-        </ion-item>
-      </ion-radio-group>
-
-      <ion-list-header color="light">Hưởng lương</ion-list-header>
-      <ion-item>
-        <ion-label>Không</ion-label>
+      <ion-item *ngIf="dataDonTu.length == 0">
+        <ion-label class="not-application-form">
+          Nội dung trống !
+        </ion-label>
       </ion-item>
-    </ion-list>
-
-    <ion-list lines="full" mode="md" *ngSwitchCase="2">
-      <ion-list-header color="light">
-        Ngày <ion-icon name="medical" color="danger" class="icon-required"></ion-icon>
-      </ion-list-header>
-      <ion-item>
-        <ion-datetime displayFormat="DD/MM/YYYY" placeholder="Chọn ngày" cancelText="Hủy" doneText="Đồng ý"></ion-datetime>
-      </ion-item>
-
-      <ion-list-header color="light">Giờ bắt đầu</ion-list-header>
-      <ion-item>
-        <ion-datetime displayFormat="HH:mm" value="08:00" cancelText="Hủy" doneText="Đồng ý"></ion-datetime>
-      </ion-item>
-
-      <ion-list-header color="light">Giờ kết thúc</ion-list-header>
-      <ion-item>
-        <ion-datetime displayFormat="HH:mm" value="17:00" cancelText="Hủy" doneText="Đồng ý"></ion-datetime>
-      </ion-item>
-      
-      <ion-list-header color="light">
-        Ca được phân
-      </ion-list-header>
-      <ion-item>
-        <ion-label>Hành chính</ion-label>
-      </ion-item>
-
-      <ion-list-header color="light">
-        Lý do <ion-icon name="medical" color="danger" class="icon-required"></ion-icon>
-      </ion-list-header>
-      <ion-radio-group value="1">
-        <ion-item>
-          <ion-label>Đến muộn để đi gặp khách hàng</ion-label>
-          <ion-radio slot="start" value="1"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>Về sớm để gặp khách hàng</ion-label>
-          <ion-radio slot="start" value="2"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>Bận việc gia đình</ion-label>
-          <ion-radio slot="start" value="3"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>Hỏng xe</ion-label>
-          <ion-radio slot="start" value="4"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>Tắc đường</ion-label>
-          <ion-radio slot="start" value="5"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>Đi muộn việc riêng</ion-label>
-          <ion-radio slot="start" value="6"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>Về sớm việc riêng</ion-label>
-          <ion-radio slot="start" value="7"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>Đi muộn làm hồ sơ thủ tục công ty</ion-label>
-          <ion-radio slot="start" value="8"></ion-radio>
-        </ion-item>
-      </ion-radio-group>
 
     </ion-list>
-
-    <ion-list lines="full" mode="md" *ngSwitchCase="3">
-      <ion-list-header color="light">
-        Ngày <ion-icon name="medical" color="danger" class="icon-required"></ion-icon>
-      </ion-list-header>
-      <ion-item>
-        <ion-datetime displayFormat="DD/MM/YYYY" placeholder="Chọn ngày" cancelText="Hủy" doneText="Đồng ý"></ion-datetime>
-      </ion-item>
-      
-      <ion-list-header color="light">
-        Ca được phân
-      </ion-list-header>
-      <ion-item>
-        <ion-label>Hành chính</ion-label>
-      </ion-item>
-      
-      <ion-list-header color="light">
-        Ca tăng <ion-icon name="medical" color="danger" class="icon-required"></ion-icon>
-      </ion-list-header>
-      <ion-radio-group value="morning">
-        <ion-item>
-          <ion-label>Ca sáng</ion-label>
-          <ion-radio slot="start" value="morning"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>Ca chiều</ion-label>
-          <ion-radio slot="start" value="afternoon"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>Ngày nghỉ</ion-label>
-          <ion-radio slot="start" value="week"></ion-radio>
-        </ion-item>
-      </ion-radio-group>
-    </ion-list>
-
-    <ion-list lines="full" mode="md" *ngSwitchCase="4">
-      <ion-list-header color="light">
-        Ngày <ion-icon name="medical" color="danger" class="icon-required"></ion-icon>
-      </ion-list-header>
-      <ion-item>
-        <ion-datetime displayFormat="DD/MM/YYYY" placeholder="Chọn ngày" cancelText="Hủy" doneText="Đồng ý"></ion-datetime>
-      </ion-item>
-      
-      <ion-list-header color="light">
-        Ca được phân
-      </ion-list-header>
-      <ion-item>
-        <ion-label>Hành chính</ion-label>
-      </ion-item>
-      
-      <ion-list-header color="light">
-        Giờ bắt đầu <ion-icon name="medical" color="danger" class="icon-required"></ion-icon>
-      </ion-list-header>
-      <ion-item>
-        <ion-datetime displayFormat="HH:mm" value="17:00" cancelText="Hủy" doneText="Đồng ý"></ion-datetime>
-      </ion-item>
-
-      <ion-list-header color="light">
-        Giờ kết thúc <ion-icon name="medical" color="danger" class="icon-required"></ion-icon>
-      </ion-list-header>
-      <ion-item>
-        <ion-datetime displayFormat="HH:mm" value="19:00" cancelText="Hủy" doneText="Đồng ý"></ion-datetime>
-      </ion-item>
-
-      <ion-list-header>Ghi chú</ion-list-header>
-      <ion-item>
-        <ion-input type="text" placeholder="Nội dung"></ion-input>
-      </ion-item>
-    </ion-list>
-
-    <ion-list lines="full" mode="md" *ngSwitchCase="5">
-      <ion-list-header color="light">
-        Ngày <ion-icon name="medical" color="danger" class="icon-required"></ion-icon>
-      </ion-list-header>
-      <ion-item>
-        <ion-datetime displayFormat="DD/MM/YYYY" placeholder="Chọn ngày" cancelText="Hủy" doneText="Đồng ý"></ion-datetime>
-      </ion-item>
-      
-      <ion-list-header color="light">
-        Ca được phân
-      </ion-list-header>
-      <ion-item>
-        <ion-label>Hành chính</ion-label>
-      </ion-item>
-      
-      <ion-list-header color="light">
-        Từ ngày <ion-icon name="medical" color="danger" class="icon-required"></ion-icon>
-      </ion-list-header>
-      <ion-item>
-        <ion-datetime displayFormat="DD/MM/YYYY" placeholder="Chọn ngày" cancelText="Hủy" doneText="Đồng ý"></ion-datetime>
-      </ion-item>
-
-      <ion-list-header color="light">
-        Đến ngày <ion-icon name="medical" color="danger" class="icon-required"></ion-icon>
-      </ion-list-header>
-      <ion-item>
-        <ion-datetime displayFormat="DD/MM/YYYY" placeholder="Chọn ngày" cancelText="Hủy" doneText="Đồng ý"></ion-datetime>
-      </ion-item>
-
-      <ion-list-header>
-        Địa điểm công tác <ion-icon name="medical" color="danger" class="icon-required"></ion-icon>
-      </ion-list-header>
-      <ion-item>
-        <ion-input type="text" placeholder="Nội dung"></ion-input>
-      </ion-item>
-    </ion-list>
-
-    <ion-list lines="full" mode="md" *ngSwitchCase="6">
-      <ion-list-header color="light">
-        Từ ngày <ion-icon name="medical" color="danger" class="icon-required"></ion-icon>
-      </ion-list-header>
-      <ion-item>
-        <ion-datetime displayFormat="DD/MM/YYYY" placeholder="Chọn ngày" cancelText="Hủy" doneText="Đồng ý"></ion-datetime>
-      </ion-item>
-
-      <ion-list-header color="light">
-        Đến ngày <ion-icon name="medical" color="danger" class="icon-required"></ion-icon>
-      </ion-list-header>
-      <ion-item>
-        <ion-datetime displayFormat="DD/MM/YYYY" placeholder="Chọn ngày" cancelText="Hủy" doneText="Đồng ý"></ion-datetime>
-      </ion-item>
-
-      <ion-list-header color="light">
-        Đi muộn <ion-icon name="medical" color="danger" class="icon-required"></ion-icon>
-      </ion-list-header>
-      <ion-item>
-        <ion-datetime displayFormat="HH:mm" value="08:00" cancelText="Hủy" doneText="Đồng ý"></ion-datetime>
-      </ion-item>
-
-      <ion-list-header color="light">
-        Về sớm <ion-icon name="medical" color="danger" class="icon-required"></ion-icon>
-      </ion-list-header>
-      <ion-item>
-        <ion-datetime displayFormat="HH:mm" value="17:00" cancelText="Hủy" doneText="Đồng ý"></ion-datetime>
-      </ion-item>
-
-      <ion-list-header color="light">
-        Lý do làm chế độ <ion-icon name="medical" color="danger" class="icon-required"></ion-icon>
-      </ion-list-header>
-      <ion-radio-group value="1">
-        <ion-item>
-          <ion-label>Nuôi con nhỏ dưới 12 tháng</ion-label>
-          <ion-radio value="1" slot="start"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>Ốm - Bệnh</ion-label>
-          <ion-radio value="2" slot="start"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>Vợ sinh</ion-label>
-          <ion-radio value="3" slot="start"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>Con ốm</ion-label>
-          <ion-radio value="4" slot="start"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>Lý do khác</ion-label>
-          <ion-radio value="5" slot="start"></ion-radio>
-        </ion-item>
-      </ion-radio-group>
-
-    </ion-list>
-
-    <ion-list lines="full" mode="md" *ngSwitchCase="7">
-      <ion-list-header color="light">
-        Ngày cần đổi <ion-icon name="medical" color="danger" class="icon-required"></ion-icon>
-      </ion-list-header>
-      <ion-item>
-        <ion-datetime displayFormat="DD/MM/YYYY" placeholder="Chọn ngày" cancelText="Hủy" doneText="Đồng ý"></ion-datetime>
-      </ion-item>
-      
-      <ion-list-header color="light">
-        Ca cần đổi
-      </ion-list-header>
-      <ion-item>
-        <ion-label>Hành chính</ion-label>
-      </ion-item>
-      
-      <ion-list-header color="light">
-        Kiểu đổi ca <ion-icon name="medical" color="danger" class="icon-required"></ion-icon>
-      </ion-list-header>
-      <ion-radio-group value="1">
-        <ion-item>
-          <ion-label>Chính mình</ion-label>
-          <ion-radio value="1" slot="start"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>Người khác</ion-label>
-          <ion-radio value="2" slot="start"></ion-radio>
-        </ion-item>
-      </ion-radio-group>
-
-      <ion-list-header color="light">
-        Ca muốn làm <ion-icon name="medical" color="danger" class="icon-required"></ion-icon>
-      </ion-list-header>
-      <ion-radio-group value="1">
-        <ion-item>
-          <ion-label>Ca sáng</ion-label>
-          <ion-radio value="1" slot="start"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>Ca chiều</ion-label>
-          <ion-radio value="2" slot="start"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>Ngày nghỉ</ion-label>
-          <ion-radio value="3" slot="start"></ion-radio>
-        </ion-item>
-      </ion-radio-group>
-    </ion-list>
-
-    <ion-list lines="full" mode="md" *ngSwitchCase="8">
-      <ion-list-header color="light">
-        Ngày <ion-icon name="medical" color="danger" class="icon-required"></ion-icon>
-      </ion-list-header>
-      <ion-item>
-        <ion-datetime displayFormat="DD/MM/YYYY" placeholder="Chọn ngày" cancelText="Hủy" doneText="Đồng ý"></ion-datetime>
-      </ion-item>
-      
-      <ion-list-header color="light">
-        Giờ
-      </ion-list-header>
-      <ion-item>
-        <ion-datetime displayFormat="HH:mm" value="08:00" cancelText="Hủy" doneText="Đồng ý"></ion-datetime>
-      </ion-item>
-      
-      <ion-list-header color="light">
-        Ca được phân
-      </ion-list-header>
-      <ion-item>
-        <ion-label>Hành chính</ion-label>
-      </ion-item>
-      
-      <ion-list-header color="light">
-        Hoạt động <ion-icon name="medical" color="danger" class="icon-required"></ion-icon>
-      </ion-list-header>
-      <ion-radio-group value="1">
-        <ion-item>
-          <ion-label>Vào</ion-label>
-          <ion-radio value="1" slot="start"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>Ra</ion-label>
-          <ion-radio value="2" slot="start"></ion-radio>
-        </ion-item>
-      </ion-radio-group>
-
-      <ion-list-header color="light">
-        Lý do giải trình <ion-icon name="medical" color="danger" class="icon-required"></ion-icon>
-      </ion-list-header>
-      <ion-radio-group value="1">
-        <ion-item>
-          <ion-label>Quyên chấm công</ion-label>
-          <ion-radio value="1" slot="start"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>Không chấm công được</ion-label>
-          <ion-radio value="2" slot="start"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>Làm việc ở ngoài</ion-label>
-          <ion-radio value="3" slot="start"></ion-radio>
-        </ion-item>
-      </ion-radio-group>
-    </ion-list>
-
   </div>
 
-  <div class="general-application-form">
+  <!-- Phần chung: nội dung, người duyệt, mô tả -->
+  <div class="design-form">
     <ion-list lines="full" mode="md">
       <ion-list-header color="light">
         Người duyệt <ion-icon name="medical" color="danger" class="icon-required"></ion-icon>
       </ion-list-header>
-      <ion-item>
-        <ion-label>Nguyễn Văn Thắng(mbw@thangnv)</ion-label>
-        <ion-checkbox slot="start"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <ion-label>Đặng Quang Vũ(ekgis@vuqd)</ion-label>
-        <ion-checkbox slot="start"></ion-checkbox>
+      <ion-item *ngFor="let item of nguoiDuyet">
+        <ion-label>{{ item.name }} ({{ item.id }})</ion-label>
+        <ion-checkbox slot="start" [(ngModel)]="item.isChecked"></ion-checkbox>
       </ion-item>
 
       <ion-list-header color="light">Người thông báo</ion-list-header>
@@ -472,20 +103,15 @@
       </ion-item>
     </ion-list>
   </div>
-
-  <div class="btn-submit">
-    <ion-grid>
-      <ion-row>
-        <ion-col size="0" size-lg="3"></ion-col>
-        <ion-col size="12" size-lg="6">
-          <ion-button color="tealgreen" expand="block">
-            Xác nhận
-          </ion-button>
-        </ion-col>
-        <ion-col size="0" size-lg="3"></ion-col>
-      </ion-row>
-    </ion-grid>
-  </div>
-  
 </ion-content>
+
+<ion-footer mode="ios" class="ion-no-border">
+  <ion-toolbar>
+    <ion-button color="tealgreen" expand="block" (click)="onSubmitForm()" [disabled]="dataDonTu.length == 0">
+      Gửi đơn
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
+  
+
 

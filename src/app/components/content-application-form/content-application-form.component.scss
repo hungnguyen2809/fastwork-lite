@@ -1,0 +1,18 @@
+.content-application-form{
+  font-size: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  .content-request{
+    display: inline-block;
+    margin: 2px 5px;
+    p{
+      display: flex;
+      align-items: center;
+      margin: 0px;
+      ion-text{
+        margin-left: 5px;
+        margin-right: 8px;
+      }
+    }
+  }
+}

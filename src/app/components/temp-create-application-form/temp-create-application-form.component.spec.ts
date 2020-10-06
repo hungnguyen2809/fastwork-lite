@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { DetailsApplicationFormComponent } from './details-application-form.component';
+import { TempCreateApplicationFormComponent } from './temp-create-application-form.component';
 
-describe('DetailsApplicationFormComponent', () => {
-  let component: DetailsApplicationFormComponent;
-  let fixture: ComponentFixture<DetailsApplicationFormComponent>;
+describe('TempCreateApplicationFormComponent', () => {
+  let component: TempCreateApplicationFormComponent;
+  let fixture: ComponentFixture<TempCreateApplicationFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DetailsApplicationFormComponent ],
+      declarations: [ TempCreateApplicationFormComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(DetailsApplicationFormComponent);
+    fixture = TestBed.createComponent(TempCreateApplicationFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

@@ -93,8 +93,19 @@
 
 
   <div class="application-form-request">
-    <ion-label>Đơn chờ duyệt</ion-label>
-    <application-form [manager]="true" [data]="item" *ngFor="let item of data"></application-form>
+    <div class="title-action">
+      <ion-label>Đơn chờ duyệt</ion-label>
+    </div>
+    <application-form 
+      [manager]="manager" 
+      [data]="item" *ngFor="let item of data"
+      [showDescription]="true"
+      (click)="onDetailsAF(manager, item)"
+    ></application-form>
+  </div>
+
+  <div class="not-application-form" *ngIf="data.length == 0">
+    <ion-label>Tất cả các đơn đã được xử lý !</ion-label>
   </div>
   
 </ion-content>

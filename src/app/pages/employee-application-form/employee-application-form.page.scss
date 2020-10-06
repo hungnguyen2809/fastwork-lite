@@ -43,7 +43,6 @@ ion-header{
   
     ion-label{
       margin-top: 7px;
-      font-family: "Open Sans Regular";
       font-size: 15px;
     }
   }
@@ -51,6 +50,10 @@ ion-header{
 
 .application-form-request{
   margin: 10px;
+  .title-action{
+    padding-bottom: 5px;
+    border-bottom: 1px solid #dcdcdc;
+  }
   ion-label{
     font-family: "Open Sans SemiBold";
     font-size: 17px;
@@ -60,5 +63,11 @@ ion-header{
       margin-left: 3px;
     }
   }
+}
+
+.not-application-form{
+  font-style: italic;
+  text-align: center;
+  width: 100%;
 }
 

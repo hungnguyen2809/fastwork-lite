@@ -50,10 +50,20 @@ ion-header{
 }
 
 .application-form-request{
+  .title-action{
+    padding-bottom: 5px;
+    border-bottom: 1px solid #dcdcdc;
+  }
   margin: 10px;
   ion-label{
     font-family: "Open Sans SemiBold";
     font-size: 17px;
   }
+}
+
+.not-application-form{
+  font-style: italic;
+  text-align: center;
+  width: 100%;
 }
 

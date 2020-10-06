@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 import { FilterPageComponent } from 'src/app/components/filter-page/filter-page.component';
 import { DataService } from 'src/app/services/data.service';
 
@@ -10,7 +10,11 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class FilterApplicationFormPage implements OnInit {
   data = [];
-  constructor(private dataSvc: DataService, private modalCtrl: ModalController) {
+  manager = true;
+  constructor(private dataSvc: DataService, 
+    private modalCtrl: ModalController, 
+    private navCtrl: NavController) 
+    {
     this.dataSvc.getAllData().subscribe(res => {
       this.data = res;
     });
@@ -30,6 +34,17 @@ export class FilterApplicationFormPage implements OnInit {
 
     filter.present();
   }
+
+  onDetailsAF(manager, data){
+		this.navCtrl.navigateForward('details-application-form', {
+			state: {
+				dulieu: {
+					manager: manager,
+					data: data
+				}
+			}
+		});
+	}
 
 
 }

@@ -1,9 +1,231 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>details-application-form</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title> {{ data.titleAF }} </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div class="header-application-form">
+    <ion-avatar>
+      <img src="./../../../assets/imgs/person-male.png" alt="">
+    </ion-avatar>
+    <div class="title-state-application-form">
+      <div class="title-application-form">
+        <ion-text>
+          Nguyễn Văn Hùng
+        </ion-text>
+        <ion-label color="dark">
+          <ng-container [ngSwitch]="data.state">
+            <i class="far fa-check-circle" *ngSwitchCase="1"></i>
+            <i class="fas fa-minus-circle" *ngSwitchCase="2"></i>
+            <i class="far fa-times-circle" *ngSwitchCase="3"></i>
+          </ng-container>
+          Trạng thái:
+          <ng-container [ngSwitch]="data.state">
+            <span *ngSwitchCase="1">Đồng ý</span>
+            <span *ngSwitchCase="2">Đang chờ</span>
+            <span *ngSwitchCase="3">Bị hủy</span>
+          </ng-container>
+        </ion-label>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-application-form design-form">
+    <ion-list lines="full" mode="md">
+      <ion-list-header color="light">
+        <ion-label>Ngày nộp đơn</ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-label>
+          20/02/2020 - 07:30
+        </ion-label>
+      </ion-item>
+
+      <ion-list-header color="light">
+        <ion-label>Ngày phê duyệt</ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-label *ngIf="data.state != 2 else notRequest">
+          20/02/2020 - 08:30
+        </ion-label>
+        <ng-template #notRequest>
+          <ion-label>Đang chờ...</ion-label>
+        </ng-template>
+        
+      </ion-item>
+
+      <ion-list-header color="light">
+        <ion-label>Thông tin đơn</ion-label>
+      </ion-list-header>
+      <ion-item>
+        <content-application-form 
+          [loaiDon]="1" 
+          [data]="null"
+          [showDescription]="false"  
+        ></content-application-form>
+      </ion-item>
+      <ion-item>
+        <content-application-form 
+          [loaiDon]="1" 
+          [data]="null"
+          [showDescription]="false"  
+        ></content-application-form>
+      </ion-item>
+      <ion-item>
+        <content-application-form 
+          [loaiDon]="1" 
+          [data]="null"
+          [showDescription]="false"  
+        ></content-application-form>
+      </ion-item>
+
+      <ion-list-header color="light">
+        <ion-label>
+          Người duyệt
+        </ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-text>
+          <div class="manager-accept" *ngIf="data.manager != null else notResult">
+            <ion-avatar>
+              <img [src]="data.manager.avatar" alt="">
+            </ion-avatar>
+            <span>
+              {{ data.manager.name }}
+            </span>
+          </div>
+          <ng-template #notResult>
+            Đang chờ...
+          </ng-template>
+        </ion-text>
+      </ion-item>
+
+    </ion-list>
+  </div>
+
+  <div class="comments-application-form design-form">
+    <ion-list>
+      <ion-list-header color="light">
+        <ion-label>
+          Bình luận
+        </ion-label>
+        <ion-text *ngIf="manager == true" class="write-comment" (click)="onShowInputComment()">
+          <div class="ion-activatable ripple-parent">
+            <i class="fas fa-pencil-alt"></i>
+            <ion-ripple-effect></ion-ripple-effect>
+          </div>
+        </ion-text>
+      </ion-list-header>
+    </ion-list>
+
+    <!-- list comments -->
+    <div class="comments">
+      <ion-avatar>
+        <img src="./../../../assets/imgs/anonymous_mask.png" alt="">
+      </ion-avatar>
+      <div class="content">
+        <div class="header-content">
+          <ion-text color="dark">Nguyễn Ngọc Ánh</ion-text>
+          <i class="fas fa-circle"></i>
+          <span color="dark"> 1 Day ago </span>
+        </div>
+        <div class="main-content">
+          <ion-text>
+            Lorem ipsum dolor sit amet consectetur adipisicing
+            elit. Debitis deleniti blanditiis et libero reprehenderit illum est eius sed nulla,
+            expedita esse voluptatum temporibus at perspiciatis iste similique corporis, ea quo?
+          </ion-text>
+        </div>
+      </div>
+    </div>
+
+    <div class="comments ion-padding">
+      <ion-avatar>
+        <img src="./../../../assets/imgs/anonymous_mask.png" alt="">
+      </ion-avatar>
+      <div class="content">
+        <div class="header-content">
+          <ion-text color="dark">Nguyễn Ngọc Ánh</ion-text>
+          <i class="fas fa-circle"></i>
+          <span color="dark"> 1 Day ago </span>
+        </div>
+        <div class="main-content">
+          <ion-text>
+            Lorem ipsum dolor sit amet consectetur adipisicing
+            elit.
+          </ion-text>
+        </div>
+      </div>
+    </div>
+
+    <div class="comments ion-padding">
+      <ion-avatar>
+        <img src="./../../../assets/imgs/anonymous_mask.png" alt="">
+      </ion-avatar>
+      <div class="content">
+        <div class="header-content">
+          <ion-text color="dark">Nguyễn Ngọc Ánh</ion-text>
+          <i class="fas fa-circle"></i>
+          <span color="dark"> 1 Day ago </span>
+        </div>
+        <div class="main-content">
+          <ion-text>
+            Lorem ipsum dolor sit amet consectetur adipisicing
+            elit. Debitis deleniti blanditiis et libero reprehenderit illum est eius sed nulla,
+            expedita esse voluptatum temporibus at perspiciatis iste similique corporis, ea quo?
+          </ion-text>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </ion-content>
+
+<ion-footer [ngSwitch]="manager">
+  <ion-toolbar *ngSwitchCase="true">
+    <div class="send-comment" *ngIf="showKeyboard == true">
+      <ion-textarea #inputText placeholder="Nhập nội dung ..." [(ngModel)]="contentComment"></ion-textarea>
+      <div class="action-btn">
+        <div class="ion-activatable ripple-parent icon-send">
+          <i class="fas fa-paper-plane fa-lg" (click)="onSendComments()"></i>
+          <ion-ripple-effect></ion-ripple-effect>
+        </div>
+      </div>
+    </div>
+    <ion-grid class="btn-accept" *ngIf="showKeyboard == false">
+      <ion-row>
+        <ion-col *ngIf="data.state == 2"> 
+          <ion-button expand="block" color="tealgreen" mode="ios">
+            Đồng ý
+          </ion-button>
+        </ion-col>
+        <ion-col *ngIf="data.state == 2">
+          <ion-button expand="block" color="danger" mode="ios">
+            Từ chối
+          </ion-button>
+        </ion-col>
+        <ion-col *ngIf="data.state == 1 || data.state == 3">
+          <ion-button expand="block" color="warning" mode="ios">
+            Hủy bỏ
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+
+  <ion-toolbar *ngSwitchCase="false">
+    <div class="send-comment">
+      <ion-textarea #inputText placeholder="Nhập nội dung ..." [(ngModel)]="contentComment"></ion-textarea>
+      <div class="action-btn">
+        <div class="ion-activatable ripple-parent icon-send">
+          <i class="fas fa-paper-plane fa-lg" (click)="onSendComments()"></i>
+          <ion-ripple-effect></ion-ripple-effect>
+        </div>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-footer>

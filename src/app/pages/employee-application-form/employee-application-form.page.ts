@@ -1,7 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from '@angular/router';
-import { AlertController, NavController } from "@ionic/angular";
+import { AlertController, NavController, PopoverController } from "@ionic/angular";
 import { ApplicationForm } from "src/app/components/application-form/application-form.component";
+import { HistoryEmployeeAfComponent } from 'src/app/components/history-employee-af/history-employee-af.component';
 import { DataService } from "src/app/services/data.service";
 
 @Component({
@@ -12,12 +13,14 @@ import { DataService } from "src/app/services/data.service";
 export class EmployeeApplicationFormPage implements OnInit {
 	titleSeeFor: { title; value };
 	data: ApplicationForm[] = [];
+	manager: boolean = false;
 
 	constructor(
 		private alertCtrl: AlertController,
 		private dataService: DataService,
 		private navCtrl: NavController,
-		private router: Router
+		private router: Router,
+		private popoverCtrl: PopoverController
 	) {}
 
 	ngOnInit() {
@@ -73,11 +76,35 @@ export class EmployeeApplicationFormPage implements OnInit {
 		alertFind.present();
 	}
 
-	onCreateAF(type: number){
+	onCreateAF(loaiDon: number){
 		this.navCtrl.navigateForward('create-application-form', {
 			state: {
-				type: type
+				type: loaiDon
 			}
 		});
+	}
+
+	onDetailsAF(manager, data){
+		this.navCtrl.navigateForward('details-application-form', {
+			state: {
+				dulieu: {
+					manager: manager,
+					data: data
+				}
+			}
+		});
+	}
+
+	async onShowHistory(ev){
+		const pop = await this.popoverCtrl.create({
+			component: HistoryEmployeeAfComponent,
+			animated: true,
+			event: ev,
+			cssClass: 'history-employee-af',
+			mode: "md",
+			id: 'pop-history-empl'
+		});
+		
+		pop.present();
 	}
 }

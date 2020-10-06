@@ -28,6 +28,7 @@
 @import "./theme/fonts.scss";
 
 
+//employee-application-form
 .alert-see-application-form-employee{
   font-family: 'Open Sans Regular';
   .alert-head {
@@ -42,8 +43,51 @@
   }
 }
 
+//create-application-form
+.sort-date-application-form{
+  .alert-head {
+    text-align: center;
+    h2{
+      margin: 0px;
+    }
+  }
+
+  .alert-button-group{
+    display: none;
+  }
+}
+
+//custom chọn ngày và giờ
 .picker-button.sc-ion-picker-md, .picker-button.ion-activated.sc-ion-picker-md{
   font-size: 15px;
   text-transform: initial;
   font-family: 'Open Sans Regular';
+}
+
+//current-application-form
+.chon-loai-don{
+  .alert-head {
+    text-align: center;
+    h2{
+      margin: 0px;
+    }
+  }
+
+  .alert-button-group{
+    display: flex;
+    justify-content: space-around;
+    .alert-button{
+      text-transform: initial;
+      margin: 0px;
+    }
+  }
+}
+
+.history-employee-af{
+  --height: 40px;
+  --width: 90px;
+  app-history-employee-af{
+    width: 100%;
+    height: 100%;
+  }
 }

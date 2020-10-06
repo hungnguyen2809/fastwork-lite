@@ -10,6 +10,7 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class ManagerApplicationFormPage implements OnInit {
   data: ApplicationForm[] = [];
+  manager: boolean = true;
 
   constructor(private dataService: DataService, private navCtrl: NavController) { }
 
@@ -26,4 +27,15 @@ export class ManagerApplicationFormPage implements OnInit {
       }
     });
   }
+
+  onDetailsAF(manager, data){
+		this.navCtrl.navigateForward('details-application-form', {
+			state: {
+				dulieu: {
+					manager: manager,
+					data: data
+				}
+			}
+		});
+	}
 }
