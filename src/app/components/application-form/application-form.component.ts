@@ -25,8 +25,11 @@ export class ApplicationFormComponent implements OnInit {
 	@Input("data") data: ApplicationForm = null;
 	@Input('showDescription') showDesc: boolean = false;
 
-	constructor() {}
+	constructor() {
+
+	}
 
 	ngOnInit() {
 	}
+
 }

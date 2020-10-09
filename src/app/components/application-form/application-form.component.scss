@@ -20,9 +20,6 @@
         margin-left: 10px;
         ion-text{
           font-family: "Open Sans Bold";
-          i{
-            margin-left: 3px;
-          }
         }
         ion-label{
           font-family: "Open Sans Regular";
@@ -30,7 +27,10 @@
           display: flex;
           align-items: center;
           span{
-            margin-left: 5px;
+            margin: 5px;
+            i{
+              font-weight: bold;
+            }
           }
         }
       }
@@ -38,18 +38,20 @@
   }
 
   .content-application-form{
-    font-family: "Open Sans Regular";
     font-size: 15px;
-    padding: 5px;
-    .time-request{
-      display: inline-block;
-      margin: 2px 5px;
-      p{
-        display: flex;
-        align-items: center;
-        margin: 0px;
+    .content-request{
+      display: flex;
+      padding: 5px;
+      .icon-content{
+        ion-icon{
+          font-size: 18px;
+        }
+      }
+      .content-af{
+        margin-left: 8px;
         ion-text{
-          margin-left: 5px;
+          display: inline-block;
+          margin-bottom: 5px;
         }
       }
     }

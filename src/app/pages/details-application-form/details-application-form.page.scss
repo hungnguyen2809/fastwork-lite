@@ -59,6 +59,19 @@ ion-header{
 
 
 .content-application-form{
+  .btn-add-af{
+    ion-text{
+      margin-right: 15px;
+      font-family: "Open Sans Regular";
+      font-size: 15px;
+
+      div{
+        padding: 5px 7px;
+        border-radius: 3px;
+      }
+    }
+  }
+
   .manager-accept{
     display: flex;
     align-items: center;
@@ -69,7 +82,7 @@ ion-header{
       min-height: 25px;
       margin-right: 5px;
     }
-  } 
+  }
 }
 
 
@@ -106,6 +119,28 @@ ion-header{
       padding: 7px 10px;
       border-radius: 20px;
       color: #38b8f3;
+    }
+  }
+
+  .send-comment{
+    display: flex;
+    padding: 5px 0px;
+    border-bottom: 1px solid #dcdcdc;
+    ion-textarea{
+      --padding-start: 15px;
+      --padding-top: 0px;
+      font-size: 15.5px;
+    }
+    .action-btn{
+      padding-top: 10px;
+      .icon-send{
+        padding: 10px 8px;
+        border-radius: 20px;
+        color: #45aaf2;
+      }
+      .fa-paper-plane{
+        margin-right: 5px;
+      }
     }
   }
 
@@ -150,20 +185,6 @@ ion-footer{
   ion-toolbar{
     --padding-bottom: 10px;
     --padding-start: 5px;
-    .send-comment{
-      display: flex;
-      .action-btn{
-        padding-top: 10px;
-        .icon-send{
-          padding: 10px 8px;
-          border-radius: 20px;
-          color: #45aaf2;
-        }
-        .fa-paper-plane{
-          margin-right: 5px;
-        }
-      }
-    }
 
     .btn-accept{
       ion-button{

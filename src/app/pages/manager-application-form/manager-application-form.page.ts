@@ -10,7 +10,7 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class ManagerApplicationFormPage implements OnInit {
   data: ApplicationForm[] = [];
-  manager: boolean = true;
+  manager = true;
 
   constructor(private dataService: DataService, private navCtrl: NavController) { }
 
@@ -20,10 +20,13 @@ export class ManagerApplicationFormPage implements OnInit {
     })
   }
 
-  onSeeAF(type: number){
+  onFillterAF(manager, loaiDon: number){
     this.navCtrl.navigateForward('filter-application-form', {
       state: {
-        type: type
+        duLieu: {
+          manager: manager,
+          loaiDon: loaiDon
+        }
       }
     });
   }

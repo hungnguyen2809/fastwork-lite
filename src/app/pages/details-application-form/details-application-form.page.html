@@ -23,10 +23,9 @@
             <i class="fas fa-minus-circle" *ngSwitchCase="2"></i>
             <i class="far fa-times-circle" *ngSwitchCase="3"></i>
           </ng-container>
-          Trạng thái:
           <ng-container [ngSwitch]="data.state">
             <span *ngSwitchCase="1">Đồng ý</span>
-            <span *ngSwitchCase="2">Đang chờ</span>
+            <span *ngSwitchCase="2">Chờ duyệt</span>
             <span *ngSwitchCase="3">Bị hủy</span>
           </ng-container>
         </ion-label>
@@ -58,34 +57,94 @@
         
       </ion-item>
 
-      <ion-list-header color="light">
+      <ion-list-header color="light" class="btn-add-af">
         <ion-label>Thông tin đơn</ion-label>
+        <ion-text color="primary" *ngIf="data.state == 2 && !manager">
+          <div class="ion-activatable ripple-parent" (click)="onAddInformation()">
+            Thêm
+            <ion-ripple-effect></ion-ripple-effect>
+          </div>
+        </ion-text>
       </ion-list-header>
-      <ion-item>
-        <content-application-form 
-          [loaiDon]="1" 
-          [data]="null"
-          [showDescription]="false"  
-        ></content-application-form>
-      </ion-item>
-      <ion-item>
-        <content-application-form 
-          [loaiDon]="1" 
-          [data]="null"
-          [showDescription]="false"  
-        ></content-application-form>
-      </ion-item>
-      <ion-item>
-        <content-application-form 
-          [loaiDon]="1" 
-          [data]="null"
-          [showDescription]="false"  
-        ></content-application-form>
-      </ion-item>
+      <ion-item-sliding #itemSliding [disabled]="data.state != 2">
+        <ion-item>
+          <content-application-form 
+            [loaiDon]="2" 
+            [data]="data"
+            [showDescription]="false"  
+          ></content-application-form>
+        </ion-item>
+      
+        <ion-item-options side="end">
+          <ion-item-option color="warning" (click)="onEditAF(data, itemSliding)">Sửa</ion-item-option>
+          <ion-item-option color="danger" (click)="onDeleteAF(vitri = 1, itemSliding)">Xóa</ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+
+      <ion-item-sliding #itemSliding [disabled]="data.state != 2">
+        <ion-item>
+          <content-application-form 
+            [loaiDon]="2" 
+            [data]="data"
+            [showDescription]="false"  
+          ></content-application-form>
+        </ion-item>
+      
+        <ion-item-options side="end">
+          <ion-item-option color="warning" (click)="onEditAF(data, itemSliding)">Sửa</ion-item-option>
+          <ion-item-option color="danger" (click)="onDeleteAF(vitri = 1, itemSliding)">Xóa</ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+
+      <ion-item-sliding #itemSliding [disabled]="data.state != 2">
+        <ion-item>
+          <content-application-form 
+            [loaiDon]="2" 
+            [data]="data"
+            [showDescription]="false"  
+          ></content-application-form>
+        </ion-item>
+      
+        <ion-item-options side="end">
+          <ion-item-option color="warning" (click)="onEditAF(data, itemSliding)">Sửa</ion-item-option>
+          <ion-item-option color="danger" (click)="onDeleteAF(vitri = 1, itemSliding)">Xóa</ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+
+      <ion-list-header color="light" class="btn-add-af">
+        <ion-label>
+          Người duyệt
+        </ion-label>
+        <ion-text color="primary" *ngIf="data.state == 2 && !manager">
+          <div class="ion-activatable ripple-parent" (click)="onEditApprover()">
+            Sửa
+            <ion-ripple-effect></ion-ripple-effect>
+          </div>
+        </ion-text>
+      </ion-list-header>
+
+      <ion-item-sliding #managerApprovers [disabled]="data.state !== 2" *ngFor="let manager of managerApprovers; let viTri = index">
+        <ion-item>
+          <ion-text>
+            <div class="manager-accept">
+              <ion-avatar>
+                <img [src]="manager.anh" alt="">
+              </ion-avatar>
+              <span>
+                {{ manager.ten }}
+              </span>
+            </div>
+          </ion-text>
+        </ion-item>
+
+        <ion-item-options>
+          <ion-item-option color="danger" (click)="onDeleteManagerApprovers(viTri, managerApprovers)">Xóa</ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
 
       <ion-list-header color="light">
         <ion-label>
-          Người duyệt
+          Người phê duyệt
         </ion-label>
       </ion-list-header>
       <ion-item>
@@ -104,28 +163,44 @@
         </ion-text>
       </ion-item>
 
+      <ion-list-header color="light">
+        <ion-label>
+          Người nhận thông báo
+        </ion-label>
+      </ion-list-header>
+      <ion-item [button]="data.state == 2" details="false">
+        <ion-label>
+          Nguyễn Văn Hùng, Nguyễn Tiến Thành, Nguyễn Văn Tráng
+        </ion-label>
+        <ion-badge slot="end" color="warning">+20</ion-badge>
+      </ion-item>
+
     </ion-list>
   </div>
 
   <div class="comments-application-form design-form">
-    <ion-list>
+    <ion-list mode="md">
       <ion-list-header color="light">
         <ion-label>
           Bình luận
         </ion-label>
-        <ion-text *ngIf="manager == true" class="write-comment" (click)="onShowInputComment()">
-          <div class="ion-activatable ripple-parent">
-            <i class="fas fa-pencil-alt"></i>
-            <ion-ripple-effect></ion-ripple-effect>
-          </div>
-        </ion-text>
       </ion-list-header>
     </ion-list>
+
+    <div class="send-comment">
+      <ion-textarea rows="2" #inputText (ionFocus)="onDisabledButtonAction($event)" placeholder="Nhập nội dung ..." [(ngModel)]="contentComment"></ion-textarea>
+      <div class="action-btn">
+        <div class="ion-activatable ripple-parent icon-send">
+          <i class="fas fa-paper-plane fa-lg" (click)="onSendComments()"></i>
+          <ion-ripple-effect></ion-ripple-effect>
+        </div>
+      </div>
+    </div>
 
     <!-- list comments -->
     <div class="comments">
       <ion-avatar>
-        <img src="./../../../assets/imgs/anonymous_mask.png" alt="">
+        <img src="./../../../assets/imgs/avatar_female.png" alt="">
       </ion-avatar>
       <div class="content">
         <div class="header-content">
@@ -143,9 +218,9 @@
       </div>
     </div>
 
-    <div class="comments ion-padding">
+    <div class="comments">
       <ion-avatar>
-        <img src="./../../../assets/imgs/anonymous_mask.png" alt="">
+        <img src="./../../../assets/imgs//person_.png" alt="">
       </ion-avatar>
       <div class="content">
         <div class="header-content">
@@ -162,9 +237,9 @@
       </div>
     </div>
 
-    <div class="comments ion-padding">
+    <div class="comments">
       <ion-avatar>
-        <img src="./../../../assets/imgs/anonymous_mask.png" alt="">
+        <img src="./../../../assets/imgs/microsoft_powerpoint.png" alt="">
       </ion-avatar>
       <div class="content">
         <div class="header-content">
@@ -185,18 +260,9 @@
 
 </ion-content>
 
-<ion-footer [ngSwitch]="manager">
-  <ion-toolbar *ngSwitchCase="true">
-    <div class="send-comment" *ngIf="showKeyboard == true">
-      <ion-textarea #inputText placeholder="Nhập nội dung ..." [(ngModel)]="contentComment"></ion-textarea>
-      <div class="action-btn">
-        <div class="ion-activatable ripple-parent icon-send">
-          <i class="fas fa-paper-plane fa-lg" (click)="onSendComments()"></i>
-          <ion-ripple-effect></ion-ripple-effect>
-        </div>
-      </div>
-    </div>
-    <ion-grid class="btn-accept" *ngIf="showKeyboard == false">
+<ion-footer *ngIf="manager && showKeyboard == false">
+  <ion-toolbar>
+    <ion-grid class="btn-accept">
       <ion-row>
         <ion-col *ngIf="data.state == 2"> 
           <ion-button expand="block" color="tealgreen" mode="ios">
@@ -215,17 +281,5 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-  </ion-toolbar>
-
-  <ion-toolbar *ngSwitchCase="false">
-    <div class="send-comment">
-      <ion-textarea #inputText placeholder="Nhập nội dung ..." [(ngModel)]="contentComment"></ion-textarea>
-      <div class="action-btn">
-        <div class="ion-activatable ripple-parent icon-send">
-          <i class="fas fa-paper-plane fa-lg" (click)="onSendComments()"></i>
-          <ion-ripple-effect></ion-ripple-effect>
-        </div>
-      </div>
-    </div>
   </ion-toolbar>
 </ion-footer>

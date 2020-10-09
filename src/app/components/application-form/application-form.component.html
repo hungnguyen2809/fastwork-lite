@@ -7,24 +7,58 @@
       <div class="title-application-form">
         <ion-text>
           {{ data.name }} - {{ data.titleAF | substringTitleApplicationForm }}
-          <ng-container [ngSwitch]="data.state">
-            <i class="far fa-check-circle" *ngSwitchCase="1"></i>
-            <i class="fas fa-minus-circle" *ngSwitchCase="2"></i>
-            <i class="far fa-times-circle" *ngSwitchCase="3"></i>
-          </ng-container>
         </ion-text>
         <ion-label color="medium">
           <ion-icon name="calendar-outline"></ion-icon>
           <span>{{ data.createDate }}</span>
+          
+          <ng-container [ngSwitch]="data.state">
+            <span *ngSwitchCase="1">
+              <i class="far fa-check-circle"></i>
+              Đồng ý
+            </span>
+            <span *ngSwitchCase="2">
+              <i class="fas fa-minus-circle"></i>
+              Chờ duyệt
+            </span>
+            <span *ngSwitchCase="3">
+              <i class="far fa-times-circle"></i>
+              Bị hủy
+            </span>
+          </ng-container>
         </ion-label>
       </div>
     </div>
   </div>
 
-  <content-application-form
-    [loaiDon]="2"
-    [showDescription]="showDesc"
-  ></content-application-form>
+  <div class="content-application-form">
+    <div class="content-request">
+      <div class="icon-content">
+        <ion-icon name="time-outline"></ion-icon>
+      </div>
+      <div class="content-af">
+        <ion-text>        
+          21/02/2020 - Nửa ca sau - Hành chính - Nghỉ không lương
+        </ion-text>
+        <ion-text>        
+          22/02/2020 - Nửa ca đầu - Hành chính - Nghỉ không lương
+        </ion-text>
+        <ion-text>        
+          23/02/2020 - Cả ngày - Hành chính - từ 08:00 đến 09:30 - Đi muộn làm hồ sơ thủ tục công ty
+        </ion-text>
+      </div>
+    </div>
+    <div class="content-request">
+      <div class="icon-content">
+        <ion-icon name="reader-outline"></ion-icon>
+      </div>
+      <div class="content-af">
+        <ion-text color="medium">
+          Không có mô tả
+        </ion-text>
+      </div>
+    </div>
+  </div>
   
   <div class="action-application-form" [ngSwitch]="isManager">
     <ng-container *ngSwitchCase="true">

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ModalController, NavController } from '@ionic/angular';
 import { FilterPageComponent } from 'src/app/components/filter-page/filter-page.component';
 import { DataService } from 'src/app/services/data.service';
@@ -11,13 +12,25 @@ import { DataService } from 'src/app/services/data.service';
 export class FilterApplicationFormPage implements OnInit {
   data = [];
   manager = true;
-  constructor(private dataSvc: DataService, 
+  loaiDon: number = null;
+  constructor(
+    private dataSvc: DataService, 
     private modalCtrl: ModalController, 
-    private navCtrl: NavController) 
-    {
+    private navCtrl: NavController,
+    private router: Router
+    ) 
+  {
     this.dataSvc.getAllData().subscribe(res => {
       this.data = res;
     });
+
+    this.initDuLieu();
+  }
+
+  initDuLieu(){
+    const duLieu = this.router.getCurrentNavigation().extras.state.duLieu;
+    this.manager = duLieu.manager;
+    this.loaiDon = duLieu.loaiDon;
   }
 
   ngOnInit() {
@@ -45,6 +58,4 @@ export class FilterApplicationFormPage implements OnInit {
 			}
 		});
 	}
-
-
 }

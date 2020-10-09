@@ -9,12 +9,12 @@ export class SubstringTitleApplicationFormPipe implements PipeTransform {
     const currentWidth = window.innerWidth;
     let result = '';
     if(currentWidth == 320){
-      result = value.substring(0, 3) + '...';
+      result = value.substring(0, 6) + '...';
     }
     else{
       if(currentWidth <= 375){
-        if(value.length > 10){
-          result = value.substring(0, 10) + '...';
+        if(value.length > 13){
+          result = value.substring(0, 13) + '...';
         }
         else{
           result = value;
