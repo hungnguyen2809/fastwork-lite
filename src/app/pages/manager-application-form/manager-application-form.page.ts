@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { ApplicationForm } from 'src/app/components/application-form/application-form.component';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -9,7 +8,7 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./manager-application-form.page.scss'],
 })
 export class ManagerApplicationFormPage implements OnInit {
-  data: ApplicationForm[] = [];
+  data: any[] = [];
   manager = true;
 
   constructor(private dataService: DataService, private navCtrl: NavController) { }

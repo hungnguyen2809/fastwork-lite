@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormatDate } from 'src/app/providers/format-date/format-date';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'content-application-form',
@@ -10,8 +12,10 @@ export class ContentApplicationFormComponent implements OnInit {
   @Input('data') data: any;
   @Input('showDescription') showDesc: boolean = false;
 
-  constructor() { }
+  constructor(public formatDate: FormatDate, private dataServ: DataService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.data);
+  }
 
 }

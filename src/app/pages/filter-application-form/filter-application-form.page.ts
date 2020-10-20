@@ -43,6 +43,7 @@ export class FilterApplicationFormPage implements OnInit {
       animated: true,
       keyboardClose: true,
       backdropDismiss: true,
+      mode: 'ios'
     });
 
     filter.present();

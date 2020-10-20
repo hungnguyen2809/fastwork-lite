@@ -1,71 +1,233 @@
 import { Injectable } from '@angular/core';
-import { ApplicationForm } from '../components/application-form/application-form.component';
 import { Observable, of } from 'rxjs';
+import { ApplicationForm } from './../interfaces/application-form';
+
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
   private _data: ApplicationForm[] = [];
-  private titleApplicationForms = [];
   private donTu = [];
 
+  // Trạng thái: 1 Đồng ý, 2 Chờ duyệt , 3 Bị từ chối
   constructor() {
     this._data = [
       {
         typeAF: 1,
-        name: 'Nguyễn Văn Hùng',
-        avatar: './../../../assets/imgs/person-male.png',
-        titleAF: 'Đơn xin nghỉ phép',
-        createDate: '20/09/2020',
-        time: 'Ca sáng',
-        date: '21/09/2020',
-        reason: 'Nghỉ không lương',
+        status: 1,
+        user: {
+          id: 'nvh',
+          name: 'Nguyễn Văn Hùng',
+          avatar: './../../assets/imgs/person-male.png'
+        },
+        createDate: 1582162200000,
+        acceptDate: 1602553010482,
+        contentAF: [
+          {
+            ngay: 1603276200000,
+            caDuocPhan: {
+              ma: 'hc',
+              ten: 'Hành chính'
+            },
+            caChon: {
+              ma: 'hc',
+              ten: 'Hành chính'
+            },
+            ca: {
+              ma: 'cs',
+              ten: 'Ca sáng'
+            },
+            lyDo: {
+              ma: '1',
+              ten: 'Phép năm'
+            },
+            huongLuong: true
+          },
+          {
+            ngay: 1603362600000,
+            caDuocPhan: {
+              ma: 'hc',
+              ten: 'Hành chính'
+            },
+            caChon: {
+              ma: 'hc',
+              ten: 'Cả ngày'
+            },
+            ca: {
+              ma: 'cn',
+              ten: 'Cả ngày'
+            },
+            lyDo: {
+              ma: '2',
+              ten: 'Nghỉ không lương'
+            },
+            huongLuong: true
+          },
+          {
+            ngay: 1603449000000,
+            caDuocPhan: {
+              ma: 'hc',
+              ten: 'Hành chính'
+            },
+            caChon: {
+              ma: 'hc',
+              ten: 'Hành chính'
+            },
+            ca: {
+              ma: 'cn',
+              ten: 'Cả ngày'
+            },
+            lyDo: {
+              ma: '2',
+              ten: 'Nghỉ không lương'
+            },
+            huongLuong: false
+          }
+        ],
+        userApprovers: [
+          {
+            ma: 'nvt',
+            ten: 'Nguyễn Văn Thắng',
+            anh: './../../../assets/imgs/avatar.png'
+          },
+          {
+            ma: 'dqv',
+            ten: 'Đặng Quang Vũ',
+            anh: './../../../assets/imgs/avatar.png'
+          },
+        ],
+        managerApprover: {
+          id: 'dqv',
+          name: 'Đặng Quang Vũ',
+          avatar: './../../assets/imgs/avatar.png'
+        },
+        peopleNoti: [
+          {
+            id: 'ntt',
+            name: 'Nguyễn Tiến Thành'
+          },
+          {
+            id: 'nvt',
+            name: 'Nguyễn Văn Tráng'
+          },
+          {
+            id: 'nmc',
+            name: 'Nguyễn Mạnh Cường'
+          }
+        ],
         description: '',
-        state: 1,
-        manager: { name: 'Đặng Quang Vũ', avatar: './../../../assets/imgs/avatar.png' },
       },
       {
-        typeAF: 2,
-        name: 'Nguyễn Văn Hùng',
-        avatar: './../../../assets/imgs/person-male.png',
-        titleAF: 'Đơn xin vắng mặt',
-        createDate: '20/09/2020',
-        time: 'Ca sáng 08:00 - 10:00',
-        date: '21/09/2020',
-        reason: 'Xe hỏng',
-        description: 'Xe em bị hỏng',
-        state: 2,
-        manager: null,
+        typeAF: 4,
+        status: 2,
+        user: {
+          id: 'nvh',
+          name: 'Nguyễn Văn Hùng',
+          avatar: './../../assets/imgs/person-male.png'
+        },
+        createDate: 1582162200000,
+        acceptDate: -1,
+        contentAF: [
+          {
+            ngay: 1603276200000,
+            caDuocPhan: {
+              ma : 'hc',
+              ten : 'Hành chính'
+            },
+            caChon: {
+              ma : 'hc',
+              ten : 'Hành chính'
+            },
+            batDau: 1603276200000,
+            ketThuc: 1603278000000,
+            ghiChu: 'Làm bù'
+          },
+          {
+            ngay: 1603362600000,
+            caDuocPhan: {
+              ma : 'hc',
+              ten : 'Hành chính'
+            },
+            caChon: {
+              ma : 'hc',
+              ten : 'Hành chính'
+            },
+            batDau: 1603362600000,
+            ketThuc: 1603364400000,
+            ghiChu: 'Làm bù'
+          },
+        ],
+        userApprovers: [
+          {
+            ma: 'nvt',
+            ten: 'Nguyễn Văn Thắng',
+            anh: './../../../assets/imgs/avatar.png'
+          },
+          {
+            ma: 'dqv',
+            ten: 'Đặng Quang Vũ',
+            anh: './../../../assets/imgs/avatar.png'
+          },
+        ],
+        managerApprover: null,
+        peopleNoti: [],
+        description: 'Em làm bù 2 ngày',
       },
       {
         typeAF: 3,
-        name: 'Nguyễn Văn Hùng',
-        avatar: './../../../assets/imgs/person-male.png',
-        titleAF: 'Đơn xin tăng ca',
-        createDate: '20/09/2020',
-        time: 'Full ca',
-        date: '22/09/2020',
-        reason: 'Làm có lương',
-        description: 'Em làm bù vào thứ 6 tuần trước',
-        state: 3,
-        manager: { name: 'Đặng Quang Vũ', avatar: './../../../assets/imgs/avatar.png' },
-      },
-      {
-        typeAF: 1,
-        name: 'Nguyễn Văn Hùng',
-        avatar: './../../../assets/imgs/person-male.png',
-        titleAF: 'Đơn xin nghỉ phép',
-        createDate: '20/09/2020',
-        time: 'Ca sáng',
-        date: '21/09/2020',
-        reason: 'Nghỉ không lương',
+        status: 3,
+        user: {
+          id: 'nvh',
+          name: 'Nguyễn Văn Hùng',
+          avatar: './../../assets/imgs/person-male.png'
+        },
+        createDate: 1582162200000,
+        acceptDate: 1602553010482,
+        contentAF: [
+          {
+            ngay: 1603276200000,
+            caDuocPhan: {
+              ma : 'hc',
+              ten : 'Hành chính'
+            },
+            caTang: {
+              ma : 'cc',
+              ten : 'Ca chiều'
+            },
+          },
+          {
+            ngay: 1603362600000,
+            caDuocPhan: {
+              ma : 'hc',
+              ten : 'Hành chính'
+            },
+            caTang: {
+              ma : 'cs',
+              ten : 'Ca sáng'
+            },
+          },
+        ],
+        userApprovers: [
+          {
+            ma: 'nvt',
+            ten: 'Nguyễn Văn Thắng',
+            anh: './../../../assets/imgs/avatar.png'
+          },
+          {
+            ma: 'dqv',
+            ten: 'Đặng Quang Vũ',
+            anh: './../../../assets/imgs/avatar.png'
+          },
+        ],
+        managerApprover: {
+          id: 'dqv',
+          name: 'Đặng Quang Vũ',
+          avatar: './../../assets/imgs/avatar.png'
+        },
+        peopleNoti: [],
         description: '',
-        state: 1,
-        manager: { name: 'Đặng Quang Vũ', avatar: './../../../assets/imgs/avatar.png' },
       },
     ];
-
-    
   }
 
   getAllData(): Observable<ApplicationForm[]>{

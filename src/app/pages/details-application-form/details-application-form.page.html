@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
-    <ion-title> {{ data.titleAF }} </ion-title>
+    <ion-title> {{ titleAF }} </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -18,12 +18,12 @@
           Nguyễn Văn Hùng
         </ion-text>
         <ion-label color="dark">
-          <ng-container [ngSwitch]="data.state">
+          <ng-container [ngSwitch]="data.status">
             <i class="far fa-check-circle" *ngSwitchCase="1"></i>
             <i class="fas fa-minus-circle" *ngSwitchCase="2"></i>
             <i class="far fa-times-circle" *ngSwitchCase="3"></i>
           </ng-container>
-          <ng-container [ngSwitch]="data.state">
+          <ng-container [ngSwitch]="data.status">
             <span *ngSwitchCase="1">Đồng ý</span>
             <span *ngSwitchCase="2">Chờ duyệt</span>
             <span *ngSwitchCase="3">Bị hủy</span>
@@ -40,7 +40,7 @@
       </ion-list-header>
       <ion-item>
         <ion-label>
-          20/02/2020 - 07:30
+          {{ formatDate.formatDate(data.createDate) }} - {{ formatDate.formatTime(data.createDate) }}
         </ion-label>
       </ion-item>
 
@@ -48,8 +48,8 @@
         <ion-label>Ngày phê duyệt</ion-label>
       </ion-list-header>
       <ion-item>
-        <ion-label *ngIf="data.state != 2 else notRequest">
-          20/02/2020 - 08:30
+        <ion-label *ngIf="data.status != 2 else notRequest">
+          {{ formatDate.formatDate(data.acceptDate) }} - {{ formatDate.formatTime(data.acceptDate) }}
         </ion-label>
         <ng-template #notRequest>
           <ion-label>Đang chờ...</ion-label>
@@ -59,55 +59,25 @@
 
       <ion-list-header color="light" class="btn-add-af">
         <ion-label>Thông tin đơn</ion-label>
-        <ion-text color="primary" *ngIf="data.state == 2 && !manager">
+        <ion-text color="primary" *ngIf="data.status == 2 && !manager">
           <div class="ion-activatable ripple-parent" (click)="onAddInformation()">
             Thêm
             <ion-ripple-effect></ion-ripple-effect>
           </div>
         </ion-text>
       </ion-list-header>
-      <ion-item-sliding #itemSliding [disabled]="data.state != 2">
+      <ion-item-sliding #itemSliding *ngFor="let donTu of data.contentAF; let viTri = index" [disabled]="data.status != 2">
         <ion-item>
           <content-application-form 
-            [loaiDon]="2" 
-            [data]="data"
+            [loaiDon]="data.typeAF"
+            [data]="donTu"
             [showDescription]="false"  
           ></content-application-form>
         </ion-item>
       
         <ion-item-options side="end">
-          <ion-item-option color="warning" (click)="onEditAF(data, itemSliding)">Sửa</ion-item-option>
-          <ion-item-option color="danger" (click)="onDeleteAF(vitri = 1, itemSliding)">Xóa</ion-item-option>
-        </ion-item-options>
-      </ion-item-sliding>
-
-      <ion-item-sliding #itemSliding [disabled]="data.state != 2">
-        <ion-item>
-          <content-application-form 
-            [loaiDon]="2" 
-            [data]="data"
-            [showDescription]="false"  
-          ></content-application-form>
-        </ion-item>
-      
-        <ion-item-options side="end">
-          <ion-item-option color="warning" (click)="onEditAF(data, itemSliding)">Sửa</ion-item-option>
-          <ion-item-option color="danger" (click)="onDeleteAF(vitri = 1, itemSliding)">Xóa</ion-item-option>
-        </ion-item-options>
-      </ion-item-sliding>
-
-      <ion-item-sliding #itemSliding [disabled]="data.state != 2">
-        <ion-item>
-          <content-application-form 
-            [loaiDon]="2" 
-            [data]="data"
-            [showDescription]="false"  
-          ></content-application-form>
-        </ion-item>
-      
-        <ion-item-options side="end">
-          <ion-item-option color="warning" (click)="onEditAF(data, itemSliding)">Sửa</ion-item-option>
-          <ion-item-option color="danger" (click)="onDeleteAF(vitri = 1, itemSliding)">Xóa</ion-item-option>
+          <ion-item-option color="warning" (click)="onEditAF(donTu, itemSliding)">Sửa</ion-item-option>
+          <ion-item-option color="danger" (click)="onDeleteAF(viTri, itemSliding)">Xóa</ion-item-option>
         </ion-item-options>
       </ion-item-sliding>
 
@@ -115,7 +85,7 @@
         <ion-label>
           Người duyệt
         </ion-label>
-        <ion-text color="primary" *ngIf="data.state == 2 && !manager">
+        <ion-text color="primary" *ngIf="data.status == 2 && !manager">
           <div class="ion-activatable ripple-parent" (click)="onEditApprover()">
             Sửa
             <ion-ripple-effect></ion-ripple-effect>
@@ -123,22 +93,24 @@
         </ion-text>
       </ion-list-header>
 
-      <ion-item-sliding #managerApprovers [disabled]="data.state !== 2" *ngFor="let manager of managerApprovers; let viTri = index">
+      <ion-item-sliding #managerApprovers [disabled]="data.status !== 2" *ngFor="let userApprover of data.userApprovers; let viTri = index">
         <ion-item>
           <ion-text>
             <div class="manager-accept">
               <ion-avatar>
-                <img [src]="manager.anh" alt="">
+                <img [src]="userApprover.anh" alt="">
               </ion-avatar>
               <span>
-                {{ manager.ten }}
+                {{ userApprover.ten }}
               </span>
             </div>
           </ion-text>
         </ion-item>
 
         <ion-item-options>
-          <ion-item-option color="danger" (click)="onDeleteManagerApprovers(viTri, managerApprovers)">Xóa</ion-item-option>
+          <ion-item-option color="danger" (click)="onDeleteManagerApprovers(viTri, managerApprovers)">
+            Xóa
+          </ion-item-option>
         </ion-item-options>
       </ion-item-sliding>
 
@@ -149,12 +121,12 @@
       </ion-list-header>
       <ion-item>
         <ion-text>
-          <div class="manager-accept" *ngIf="data.manager != null else notResult">
+          <div class="manager-accept" *ngIf="data.managerApprover != null else notResult">
             <ion-avatar>
-              <img [src]="data.manager.avatar" alt="">
+              <img [src]="data.managerApprover.avatar" alt="">
             </ion-avatar>
             <span>
-              {{ data.manager.name }}
+              {{ data.managerApprover.name }}
             </span>
           </div>
           <ng-template #notResult>
@@ -168,11 +140,18 @@
           Người nhận thông báo
         </ion-label>
       </ion-list-header>
-      <ion-item [button]="data.state == 2" details="false">
-        <ion-label>
-          Nguyễn Văn Hùng, Nguyễn Tiến Thành, Nguyễn Văn Tráng
+      <ion-item [button]="data.status == 2" details="false">
+        <ion-label *ngIf="data.peopleNoti.length > 0; else notPeople">
+          <span *ngFor="let people of data.peopleNoti; let viTri = index">
+            {{ people.name }},
+          </span>
         </ion-label>
-        <ion-badge slot="end" color="warning">+20</ion-badge>
+        <ng-template #notPeople>
+          <ion-label style="font-style: italic;">
+            Không có nhân viên nào được chọn !
+          </ion-label>
+        </ng-template>
+        <ion-badge *ngIf="data.peopleNoti.length > 0" slot="end" color="warning">{{data.peopleNoti.length}}</ion-badge>
       </ion-item>
 
     </ion-list>
@@ -264,17 +243,17 @@
   <ion-toolbar>
     <ion-grid class="btn-accept">
       <ion-row>
-        <ion-col *ngIf="data.state == 2"> 
+        <ion-col *ngIf="data.status == 2"> 
           <ion-button expand="block" color="tealgreen" mode="ios">
             Đồng ý
           </ion-button>
         </ion-col>
-        <ion-col *ngIf="data.state == 2">
+        <ion-col *ngIf="data.status == 2">
           <ion-button expand="block" color="danger" mode="ios">
             Từ chối
           </ion-button>
         </ion-col>
-        <ion-col *ngIf="data.state == 1 || data.state == 3">
+        <ion-col *ngIf="data.status == 1 || data.status == 3">
           <ion-button expand="block" color="warning" mode="ios">
             Hủy bỏ
           </ion-button>

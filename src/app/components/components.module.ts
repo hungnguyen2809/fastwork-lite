@@ -14,7 +14,7 @@ import { HistoryEmployeeAfComponent } from './history-employee-af/history-employ
   imports: [
     IonicModule,
     FormsModule,
-    CommonModule
+    CommonModule,
   ],
   declarations: [
     ApplicationFormComponent,

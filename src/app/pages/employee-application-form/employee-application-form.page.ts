@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from '@angular/router';
 import { AlertController, NavController, PopoverController } from "@ionic/angular";
-import { ApplicationForm } from "src/app/components/application-form/application-form.component";
 import { HistoryEmployeeAfComponent } from 'src/app/components/history-employee-af/history-employee-af.component';
 import { DataService } from "src/app/services/data.service";
 
@@ -12,7 +11,7 @@ import { DataService } from "src/app/services/data.service";
 })
 export class EmployeeApplicationFormPage implements OnInit {
 	titleSeeFor: { title; value };
-	data: ApplicationForm[] = [];
+	data: any[] = [];
 	manager: boolean = false;
 
 	constructor(

@@ -1,6 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Router } from '@angular/router';
-import { IonItemSliding, LoadingController, ModalController, Platform } from '@ionic/angular';
+import { IonItemSliding, LoadingController, ModalController, NavController, Platform } from '@ionic/angular';
 import { TempCreateApplicationFormComponent } from 'src/app/components/temp-create-application-form/temp-create-application-form.component';
 import { DataService } from 'src/app/services/data.service';
 
@@ -9,19 +9,24 @@ import { DataService } from 'src/app/services/data.service';
 	templateUrl: "./create-application-form.page.html",
 	styleUrls: ["./create-application-form.page.scss"],
 })
-export class CreateApplicationFormPage implements OnInit {
-  isIOS: boolean;
+export class CreateApplicationFormPage implements OnInit, OnDestroy {
+	isIOS: boolean;
+	
 	loaiDon: number;
 	tieuDeDon: string;
+	
 	dataDonTu: any[] = [];
 	nguoiDuyet: any[] = [];
+	nguoiThongBao: any[] = [];
+	moTa: string;
 
 	constructor(
 		private pltCtrl: Platform,
 		private router: Router,
     private dataSev: DataService,
 		private modalCtrl: ModalController,
-		private loadingCtrl: LoadingController
+		private loadingCtrl: LoadingController,
+		private navCtrl: NavController
 	) {
 		this.getPlatformDevice();
 		this.getTypeAF();
@@ -94,8 +99,15 @@ export class CreateApplicationFormPage implements OnInit {
 		});
 		createAf.present();
 
-		createAf.onDidDismiss().then(res => {
-			console.log(res);
+		createAf.onDidDismiss().then(response => {
+			if(response.data != null){
+				this.dataDonTu.push(response.data);
+			}
+			else{
+				setTimeout(()=> {
+					this.navCtrl.navigateBack('employee-application-form');
+				}, this.isIOS ? 0 : 250);
+			}
 		})
 	}
 	
@@ -129,8 +141,9 @@ export class CreateApplicationFormPage implements OnInit {
 	}
 
 	onSubmitForm(){
-		console.log(this.nguoiDuyet);
+		console.log(this.moTa);
 	}
 
-
+	ngOnDestroy(){
+	}
 }

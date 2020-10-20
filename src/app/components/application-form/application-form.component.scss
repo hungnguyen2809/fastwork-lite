@@ -48,10 +48,10 @@
         }
       }
       .content-af{
-        margin-left: 8px;
         ion-text{
           display: inline-block;
           margin-bottom: 5px;
+          margin-left: 10px;
         }
       }
     }
@@ -77,6 +77,7 @@
     .manager-accept{
       display: flex;
       align-items: center;
+      margin-right: 10px;
       ion-avatar{
         max-width: 25px;
         max-height: 25px;

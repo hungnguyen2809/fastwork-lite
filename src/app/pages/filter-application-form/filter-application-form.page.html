@@ -29,11 +29,13 @@
     </ion-chip>
   </div>
 
-  <application-form 
+  <div class="content">
+    <application-form 
     [data]="item" 
     [manager]="manager"
     [showDescription]="true" 
     *ngFor="let item of data"
     (click)="onDetailsAF(manager, item)"
   ></application-form>
+  </div>
 </ion-content>

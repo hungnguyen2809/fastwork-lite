@@ -31,6 +31,10 @@ const routes: Routes = [
     redirectTo: 'employee-application-form',
     pathMatch: 'full'
   },
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  },
 ];
 
 @NgModule({

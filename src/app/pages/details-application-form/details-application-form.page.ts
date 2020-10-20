@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
 import { AlertController, IonItemSliding, IonTextarea, ModalController, NavController, ToastController } from '@ionic/angular';
 import { TempCreateApplicationFormComponent } from 'src/app/components/temp-create-application-form/temp-create-application-form.component';
+import { FormatDate } from 'src/app/providers/format-date/format-date';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-details-application-form',
@@ -10,12 +12,11 @@ import { TempCreateApplicationFormComponent } from 'src/app/components/temp-crea
   styleUrls: ['./details-application-form.page.scss'],
 })
 export class DetailsApplicationFormPage {
-  //2 là đang chờ, nên sẽ hiện 2 nút, 1 đồng ý, 3 từ chối thì hiện nút hủy bỏ
+	titleAF: string;
   data: any;
   manager:boolean;
   showKeyboard: boolean = false;
 	contentComment: string = '';
-	managerApprovers: any[] = [];
 	dataApprovers: any[] = [];
   @ViewChild('inputText') inputText: IonTextarea;
 
@@ -25,12 +26,23 @@ export class DetailsApplicationFormPage {
     private navCtrl: NavController,
 		private modalCtrl: ModalController,
 		private alertCtrl: AlertController,
-		private toastCtrl: ToastController
+		private toastCtrl: ToastController,
+		private dataServ: DataService,
+		public formatDate: FormatDate
     ) {
-    const dulieu = this.router.getCurrentNavigation().extras.state.dulieu;
+		this.initManagerApprovers();
+
+		const dulieu = this.router.getCurrentNavigation().extras.state.dulieu;
     this.data = dulieu.data;
-		this.manager = dulieu.manager;
-		
+		this.manager = dulieu.manager;		
+		this.getTitleAF(this.data.typeAF);
+	}
+
+	getTitleAF(loaiDon: number){
+		this.dataServ.getTitleAF(loaiDon).subscribe(title => this.titleAF = title);
+	}
+	
+	initManagerApprovers() { 
 		this.dataApprovers = [
 			{
 				ma: 'nvt',
@@ -53,20 +65,7 @@ export class DetailsApplicationFormPage {
 				anh: './../../../assets/imgs/avatar.png'
 			},
 		];
-
-		this.managerApprovers = [
-			{
-				ma: 'nvt',
-				ten: 'Nguyễn Văn Thắng',
-				anh: './../../../assets/imgs/avatar.png'
-			},
-			{
-				ma: 'dqv',
-				ten: 'Đặng Quang Vũ',
-				anh: './../../../assets/imgs/avatar.png'
-			},
-		];
-  }
+	}
 
   onDisabledButtonAction(event){
     this.showKeyboard = true;
@@ -130,13 +129,13 @@ export class DetailsApplicationFormPage {
 		console.log(viTri);
 	}
 
-	initManagerApprover(): any[]{
+	initInputManagerApproverForAlert(): any[]{
 		return [
 			{
 				value: 'nvt',
 				type: 'checkbox',
 				label: 'Nguyễn Văn Thắng',
-				checked: this.managerApprovers.filter(item => {
+				checked: this.data.userApprovers.filter(item => {
 					return item.ma == 'nvt'
 				}).length > 0
 			},
@@ -144,7 +143,7 @@ export class DetailsApplicationFormPage {
 				value: 'dqv',
 				type: 'checkbox',
 				label: 'Đặng Quang Vũ',
-				checked: this.managerApprovers.filter(item => {
+				checked: this.data.userApprovers.filter(item => {
 					return item.ma == 'dqv'
 				}).length > 0
 			},
@@ -152,7 +151,7 @@ export class DetailsApplicationFormPage {
 				value: 'ldh',
 				type: 'checkbox',
 				label: 'Lê Danh Hào',
-				checked: this.managerApprovers.filter(item => {
+				checked: this.data.userApprovers.filter(item => {
 					return item.ma == 'ldh'
 				}).length > 0
 			},
@@ -160,7 +159,7 @@ export class DetailsApplicationFormPage {
 				value: 'nmc',
 				type: 'checkbox',
 				label: 'Nguyễn Mạnh Cường',
-				checked: this.managerApprovers.filter(item => {
+				checked: this.data.userApprovers.filter(item => {
 					return item.ma == 'nmc'
 				}).length > 0
 			},
@@ -172,17 +171,17 @@ export class DetailsApplicationFormPage {
 			subHeader: 'Người duyệt',
 			mode: 'ios',
 			animated: true,
-			inputs: this.initManagerApprover(),
+			inputs: this.initInputManagerApproverForAlert(),
 			buttons: [
 				{
 					text: 'Đồng ý',
 					handler: (data) => {
-						this.managerApprovers = this.dataApprovers.filter((item) => {
+						this.data.userApprovers = this.dataApprovers.filter((item) => {
 							return data.indexOf(item.ma) != -1;
 						});
 
-						if(this.managerApprovers.length == 0){
-							this.managerApprovers = [
+						if(this.data.userApprovers.length == 0){
+							this.data.userApprovers = [
 								{
 									ma: 'nvt',
 									ten: 'Nguyễn Văn Thắng',
@@ -202,9 +201,7 @@ export class DetailsApplicationFormPage {
 				},
 				{
 					text: 'Huỷ bỏ',
-					handler: () => {
-
-					},
+					handler: () => {},
 					role: 'cancel'
 				}
 			]
@@ -213,9 +210,9 @@ export class DetailsApplicationFormPage {
 	}
 
 	onDeleteManagerApprovers(viTri, ionSliding: IonItemSliding){
-		this.managerApprovers.splice(viTri, 1);
-		if(this.managerApprovers.length == 0){
-			this.managerApprovers = [
+		this.data.userApprovers.splice(viTri, 1);
+		if(this.data.userApprovers.length == 0){
+			this.data.userApprovers = [
 				{
 					ma: 'nvt',
 					ten: 'Nguyễn Văn Thắng',

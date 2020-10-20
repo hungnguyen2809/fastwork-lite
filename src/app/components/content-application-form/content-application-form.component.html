@@ -4,25 +4,25 @@
     <div class="content-request">
       <p>
         <ion-icon name="calendar-outline"></ion-icon>
-        <ion-text>21/10/2020</ion-text>
+        <ion-text>{{ formatDate.formatDate(data.ngay) }}</ion-text>
       </p>
     </div>
     <div class="content-request">
       <p>
         <ion-icon name="time-outline"></ion-icon>
-        <ion-text>Ca sáng - Nửa ca sau </ion-text>
+        <ion-text>{{ data.caChon.ten }} - {{ data.ca.ten }} </ion-text>
       </p>
     </div>
     <div class="content-request">
       <p>
         <ion-icon name="layers-outline"></ion-icon>
-        <ion-text>Nghỉ ốm</ion-text>
+        <ion-text>{{ data.lyDo.ten }}</ion-text>
       </p>
     </div>
     <div class="content-request">
       <p>
         <ion-icon name="card-outline"></ion-icon>
-        <ion-text>Không lương</ion-text>
+        <ion-text>{{ data.huongLuong ? 'Hưởng lương' : 'Không lương' }}</ion-text>
       </p>
     </div>
     <div class="content-request" *ngIf="showDesc">
@@ -37,25 +37,25 @@
     <div class="content-request">
       <p>
         <ion-icon name="calendar-outline"></ion-icon>
-        <ion-text>21/10/2020</ion-text>
+        <ion-text>{{ formatDate.formatDate(data.ngay) }}</ion-text>
       </p>
     </div>
     <div class="content-request">
       <p>
         <ion-icon name="time-outline"></ion-icon>
-        <ion-text>Hành chính</ion-text>
+        <ion-text>{{ data.caDuocPhan.ten }}</ion-text>
       </p>
     </div>
     <div class="content-request">
       <p>
         <ion-icon name="alarm-outline"></ion-icon>
-        <ion-text>08:00 - 09:00</ion-text>
+        <ion-text>{{ formatDate.formatTime(data.batDau) }} - {{ formatDate.formatTime(data.ketThuc) }}</ion-text>
       </p>
     </div>
     <div class="content-request">
       <p>
         <ion-icon name="layers-outline"></ion-icon>
-        <ion-text>Đi muộn làm hồ sơ thủ tục công ty</ion-text>
+        <ion-text>{{ data.lyDo.ten }}</ion-text>
       </p>
     </div>
     <div class="content-request" *ngIf="showDesc">
@@ -71,13 +71,13 @@
     <div class="content-request">
       <p>
         <ion-icon name="calendar-outline"></ion-icon>
-        <ion-text>21/10/2020</ion-text>
+        <ion-text>{{ formatDate.formatDate(data.ngay) }}</ion-text>
       </p>
     </div>
     <div class="content-request">
       <p>
         <ion-icon name="time-outline"></ion-icon>
-        <ion-text>Ngày nghỉ</ion-text>
+        <ion-text>{{ data.caTang.ten }}</ion-text>
       </p>
     </div>
     <div class="content-request" *ngIf="showDesc">
@@ -88,30 +88,34 @@
     </div>
   </div> 
 
-  <!-- -----------5----------------- -->
+  <!-- -----------4----------------- -->
   <div class="content-application-form" *ngSwitchCase="4">
     <div class="content-request">
       <p>
         <ion-icon name="calendar-outline"></ion-icon>
-        <ion-text>21/10/2020</ion-text>
+        <ion-text>{{ formatDate.formatDate(data.ngay) }}</ion-text>
       </p>
     </div>
     <div class="content-request">
       <p>
         <ion-icon name="time-outline"></ion-icon>
-        <ion-text>Ca sáng</ion-text>
+        <ion-text>{{ data.caChon.ten }}</ion-text>
       </p>
     </div>
     <div class="content-request">
       <p>
         <ion-icon name="alarm-outline"></ion-icon>
-        <ion-text>08:00 - 09:00</ion-text>
+        <ion-text>
+          {{ formatDate.formatTime(data.batDau) }} - {{ formatDate.formatTime(data.ketThuc) }}
+        </ion-text>
       </p>
     </div>
     <div class="content-request">
       <p>
         <ion-icon name="document-text-outline"></ion-icon>
-        <ion-text>Không ghi chú !</ion-text>
+        <ion-text>
+          {{ data.ghiChu.length > 0 ? data.ghiChu : 'Không ghi chú !' }}
+        </ion-text>
       </p>
     </div>
     <div class="content-request" *ngIf="showDesc">
@@ -127,19 +131,19 @@
     <div class="content-request">
       <p>
         <ion-icon name="calendar-outline"></ion-icon>
-        <ion-text>21/10/2020</ion-text>
+        <ion-text>{{ formatDate.formatDate(data.ngay) }}</ion-text>
       </p>
     </div>
     <div class="content-request">
       <p>
         <ion-icon name="time-outline"></ion-icon>
-        <ion-text>Ca sáng</ion-text>
+        <ion-text>{{ data.caChon.ten }}</ion-text>
       </p>
     </div>
     <div class="content-request">
       <p>
         <ion-icon name="location-outline"></ion-icon>
-        <ion-text>Tòa nhà Lotus 2</ion-text>
+        <ion-text>{{ data.diaDiem }}</ion-text>
       </p>
     </div>
     <div class="content-request" *ngIf="showDesc">
@@ -155,25 +159,27 @@
     <div class="content-request">
       <p>
         <ion-icon name="hourglass-outline"></ion-icon>
-        <ion-text>09:00</ion-text>
+        <ion-text>{{ formatDate.formatTime(data.diMuon) }}</ion-text>
       </p>
     </div>
     <div class="content-request">
       <p>
         <ion-icon name="speedometer-outline"></ion-icon>
-        <ion-text>16:00</ion-text>
+        <ion-text>{{ formatDate.formatTime(data.veSom) }}</ion-text>
       </p>
     </div>
     <div class="content-request">
       <p>
         <ion-icon name="calendar-outline"></ion-icon>
-        <ion-text>21/10/2020 - 21/11/2020</ion-text>
+        <ion-text>
+          {{ formatDate.formatDate(data.tuNgay) }} - {{ formatDate.formatDate(data.denNgay) }}  
+        </ion-text>
       </p>
     </div>
     <div class="content-request">
       <p>
         <ion-icon name="layers-outline"></ion-icon>
-        <ion-text>Nuôi con nhỏ dưới 12 tháng</ion-text>
+        <ion-text>{{ data.lyDo.ten }}</ion-text>
       </p>
     </div>
     <div class="content-request" *ngIf="showDesc">
@@ -189,32 +195,32 @@
     <div class="content-request">
       <p>
         <ion-icon name="calendar-outline"></ion-icon>
-        <ion-text>21/10/2020</ion-text>
+        <ion-text>{{ data.ngayCanDoi }}</ion-text>
       </p>
     </div>
-    <div class="content-request">
+    <div class="content-request" *ngIf="data.kieuDoi == 'nk'">
       <p>
         <ion-icon name="sync-outline"></ion-icon>
-        <ion-text>22/10/2020</ion-text>
+        <ion-text>{{ data.ngayDoi }}</ion-text>
       </p>
     </div>
     <br>
     <div class="content-request">
       <p>
         <ion-icon name="briefcase-outline"></ion-icon>
-        <ion-text>Ca hành chính</ion-text>
+        <ion-text>{{ data.caCanDoi.ten }}</ion-text>
       </p>
     </div>
     <div class="content-request">
       <p>
         <ion-icon name="sync-outline"></ion-icon>
-        <ion-text>Ca chiều</ion-text>
+        <ion-text>{{ data.caLam.ten }}</ion-text>
       </p>
     </div>
-    <div class="content-request">
+    <div class="content-request" *ngIf="data.kieuDoi == 'nk'">
       <p>
         <ion-icon name="person-add-outline"></ion-icon>
-        <ion-text>Nguyễn Tiến Thành</ion-text>
+        <ion-text>{{ data.nguoiDoi }}</ion-text>
       </p>
     </div>
     <div class="content-request" *ngIf="showDesc">
@@ -230,31 +236,31 @@
     <div class="content-request">
       <p>
         <ion-icon name="calendar-outline"></ion-icon>
-        <ion-text>21/10/2020</ion-text>
+        <ion-text>{{ formatDate.formatDate(data.ngay) }}</ion-text>
       </p>
     </div>
     <div class="content-request">
       <p>
         <ion-icon name="time-outline"></ion-icon>
-        <ion-text>09:00</ion-text>
+        <ion-text>{{ formatDate.formatTime(data.gio) }}</ion-text>
       </p>
     </div>
     <div class="content-request">
       <p>
         <ion-icon name="git-branch-outline"></ion-icon>
-        <ion-text>Vào</ion-text>
+        <ion-text>{{ data.hoatDong.ten }}</ion-text>
       </p>
     </div>
     <div class="content-request">
       <p>
         <ion-icon name="hourglass-outline"></ion-icon>
-        <ion-text>Hành chính</ion-text>
+        <ion-text>{{ data.caChon.ten }}</ion-text>
       </p>
     </div>
     <div class="content-request">
       <p>
         <ion-icon name="layers-outline"></ion-icon>
-        <ion-text>Không chấm công được</ion-text>
+        <ion-text>{{ data.lyDo.ten }}</ion-text>
       </p>
     </div>
     <div class="content-request" *ngIf="showDesc">
