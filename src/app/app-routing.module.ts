@@ -27,13 +27,13 @@ const routes: Routes = [
     loadChildren: () => import('./pages/create-application-form/create-application-form.module').then( m => m.CreateApplicationFormPageModule)
   },
   {
-    path: '',
-    redirectTo: 'employee-application-form',
-    pathMatch: 'full'
-  },
-  {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
   },
 ];
 

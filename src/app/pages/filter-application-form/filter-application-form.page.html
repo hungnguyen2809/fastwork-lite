@@ -14,28 +14,31 @@
 
 <ion-content>
   <div class="sort-by">
-    <ion-chip>
-      <ion-label>Loại đơn</ion-label>
+    <ion-chip (click)="chonLoaiDon()">
+      <ion-label>{{ loaiDon.ten }}</ion-label>
       <ion-icon name="chevron-down-outline"></ion-icon>
     </ion-chip>
-    <ion-chip class="item-actived">
-      <ion-label>Đang chờ</ion-label>
-    </ion-chip>
-    <ion-chip>
-      <ion-label>Đồng ý</ion-label>
-    </ion-chip>
-    <ion-chip>
-      <ion-label>Từ chối</ion-label>
-    </ion-chip>
+    <ng-container *ngFor="let item of trangThais">
+      <ion-chip [class]="choosedStatus == item.ma ? 'item-actived': '' ">
+        <ion-label (click)="onModifyStatus(item.ma)">{{ item.ten }}</ion-label>
+      </ion-chip>
+    </ng-container>
   </div>
 
   <div class="content">
-    <application-form 
-    [data]="item" 
-    [manager]="manager"
-    [showDescription]="true" 
-    *ngFor="let item of data"
-    (click)="onDetailsAF(manager, item)"
-  ></application-form>
+    <ng-container *ngIf="dataDon.length > 0">
+      <application-form 
+      *ngFor="let item of dataDon"
+      [data]="item" 
+      [manager]="manager"
+      [showDescription]="true" 
+      (click)="onDetailsAF(manager, item)"
+      ></application-form>
+    </ng-container>
+
+    <div class="not-application-form" *ngIf="dataDon.length == 0">
+      <ion-label>Không có đơn nào phù hợp !</ion-label>
+    </div>
+    
   </div>
 </ion-content>

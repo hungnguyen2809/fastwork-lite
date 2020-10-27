@@ -105,7 +105,7 @@
       </ion-label>
     </div>
     <application-form
-      *ngFor="let item of data"
+      *ngFor="let item of dataDon"
       [manager]="manager" 
       [data]="item"
       [showDescription]="true"
@@ -113,7 +113,7 @@
     ></application-form>
   </div>
 
-  <div class="not-application-form" *ngIf="data.length == 0">
+  <div class="not-application-form" *ngIf="dataDon.length == 0">
     <ion-label>Tất cả các đơn đã được xử lý !</ion-label>
   </div>
 </ion-content>

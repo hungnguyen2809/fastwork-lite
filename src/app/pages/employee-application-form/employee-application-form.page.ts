@@ -2,6 +2,10 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from '@angular/router';
 import { AlertController, NavController, PopoverController } from "@ionic/angular";
 import { HistoryEmployeeAfComponent } from 'src/app/components/history-employee-af/history-employee-af.component';
+import { Authentication } from 'src/app/providers/auth/auth';
+import { AuthLogin } from 'src/app/providers/login/login';
+import { PresentDialog } from 'src/app/providers/presentDialog/presentDialog';
+import { DataUserService } from 'src/app/services/data-user.service';
 import { DataService } from "src/app/services/data.service";
 
 @Component({
@@ -11,23 +15,64 @@ import { DataService } from "src/app/services/data.service";
 })
 export class EmployeeApplicationFormPage implements OnInit {
 	titleSeeFor: { title; value };
-	data: any[] = [];
+	dataDon: any[] = [];
 	manager: boolean = false;
+	org: any;
 
 	constructor(
 		private alertCtrl: AlertController,
 		private dataService: DataService,
 		private navCtrl: NavController,
 		private router: Router,
-		private popoverCtrl: PopoverController
-	) {}
+		private popoverCtrl: PopoverController,
+		private authLogin: AuthLogin,
+		private authUser: DataUserService,
+		private presentDialog: PresentDialog,
+		private auth: Authentication
+	) {
+		
+	}
 
 	ngOnInit() {
+		// this.authLogin.checkExistsUser();
+
 		this.titleSeeFor = { title: "ngày", value: "day" };
-		this.dataService.getAllData().subscribe((res) => {
-			this.data = res;
+		
+		this.getDataAF();
+
+		this.authUser.getOrgUser().then(res => {
+			this.org = res;
+			// console.log(res);
 		});
 	}
+
+	getDataAF(){
+    this.presentDialog.presentLoadding("Đang tải dữ liệu !", (loading) => {
+      this.authUser.getInforUser().then(user => {
+        const params = {
+          next: 10,
+          skip: 0,
+          createdBy: user.email
+        }
+        // console.log(params);
+  
+        this.authUser.getOrgUser().then(org => {
+          const url = "hrmletter/summary/" + org._id;
+          this.auth.GET2(url, params).then((res: any) => {
+            loading.dismiss();
+            // console.log(res);
+						let data = res.result;
+						this.dataDon = data;
+						// console.log(data);
+					})
+					.catch(() => { 
+						loading.dismiss();
+						this.presentDialog.presentAlertMessage("Vui lòng thử lại !");
+					});
+        });
+      });
+    });
+  }
 
 	async onSeeByDayWeekMonth() {
 		const alertFind = await this.alertCtrl.create({

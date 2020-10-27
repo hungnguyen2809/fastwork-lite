@@ -12,6 +12,8 @@ import { Keyboard } from '@ionic-native/keyboard/ngx';
 
 import { HttpClientModule } from "@angular/common/http";
 
+import { IonicStorageModule } from "@ionic/storage";
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +21,7 @@ import { HttpClientModule } from "@angular/common/http";
   imports: [
     BrowserModule, 
     IonicModule.forRoot(), 
+    IonicStorageModule.forRoot(),
     AppRoutingModule,
     HttpClientModule
   ],

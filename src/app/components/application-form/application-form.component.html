@@ -1,29 +1,29 @@
 <div class="application-form">
   <div class="header-application-form">
     <ion-avatar>
-      <img [src]="data.user.avatar" alt="">
+      <img [src]="data.createdBy.avatar" alt="">
     </ion-avatar>
     <div class="title-state-application-form">
       <div class="title-application-form">
         <ion-text>
-          {{ data.user.name }} - {{ titleAF | substringTitleApplicationForm }}
+          {{ data.createdBy.name }} - {{ titleAF | substringTitleApplicationForm }}
         </ion-text>
         <ion-label color="medium">
           <ion-icon name="calendar-outline"></ion-icon>
           <span>{{ formatDate.formatDate(data.createDate) }}</span>
           
           <ng-container [ngSwitch]="data.status">
-            <span *ngSwitchCase="1">
+            <span *ngSwitchCase="'Đã duyệt'">
               <i class="far fa-check-circle"></i>
-              Đồng ý
+              Đã duyệt
             </span>
-            <span *ngSwitchCase="2">
+            <span *ngSwitchCase="'Chờ duyệt'">
               <i class="fas fa-minus-circle"></i>
               Chờ duyệt
             </span>
-            <span *ngSwitchCase="3">
+            <span *ngSwitchCase="'Không duyệt'">
               <i class="far fa-times-circle"></i>
-              Bị hủy
+              Không duyệt
             </span>
           </ng-container>
         </ion-label>
@@ -36,53 +36,53 @@
       <div class="icon-content">
         <ion-icon name="time-outline"></ion-icon>
       </div>
-      <div class="content-af" [ngSwitch]="data.typeAF">
-        <ng-container *ngSwitchCase="1" >
-          <ion-text *ngFor="let donTu of data.contentAF; let viTri = index">
-            Ngày: {{ formatDate.formatDate(donTu.ngay) }} - Ca: {{ donTu.ca.ten }} - Ca chọn: {{ donTu.caChon.ten }} - Lý do: {{ donTu.lyDo.ten }} {{ data.contentAF.length - 1 !== viTri ? ',' : ''}}
+      <div class="content-af" [ngSwitch]="data.type">
+        <ng-container *ngSwitchCase="'absence'" >
+          <ion-text *ngFor="let donTu of data.absence; let viTri = index">
+            Ngày: {{ formatDate.formatDate(donTu.date_start) }} - Ca: {{ donTu.shift_start }} - Ca chọn: {{ donTu.shift_current.ten }} - Lý do: {{ donTu.reason.name }} {{ data.absence.length - 1 !== viTri ? ',' : ''}}
           </ion-text>
         </ng-container>
-        <ng-container *ngSwitchCase="2" >
-          <ion-text *ngFor="let donTu of data.contentAF; let viTri = index">
-            Ngày: {{ formatDate.formatDate(donTu.ngay) }} - Ca chọn: {{ donTu.caChon.ten }} - Từ {{ formatDate.formatTime(donTu.batDau) }} đến {{ formatDate.formatTime(donTu.ketThuc) }} - Lý do: {{ donTu.lyDo.ten }} {{ data.contentAF.length - 1 !== viTri ? ',' : ''}}
+        <ng-container *ngSwitchCase="'later'" >
+          <ion-text>
+            Ngày: {{ formatDate.formatDate(data.shift_current.datetime) }} - Ca chọn: {{ data.shift_current.ten }} - Từ {{ formatDate.formatTime(data.shift_current.bat_dau) }} đến {{ formatDate.formatTime(data.shift_current.ket_thuc) }} - Lý do: {{ data.reason.name }}
           </ion-text>
         </ng-container>
-        <ng-container *ngSwitchCase="3" >
+        <ng-container *ngSwitchCase="'shiftmore'" >
           <ion-text *ngFor="let donTu of data.contentAF; let viTri = index">
             Ngày: {{ formatDate.formatDate(donTu.ngay) }} - Ca tăng: {{ donTu.caTang.ten }} {{ data.contentAF.length - 1 !== viTri ? ',' : ''}}
           </ion-text>
         </ng-container>
-        <ng-container *ngSwitchCase="4" >
-          <ion-text *ngFor="let donTu of data.contentAF; let viTri = index">
-            Ngày: {{ formatDate.formatDate(donTu.ngay) }} - Ca chọn: {{ donTu.caChon.ten }} - Từ {{ formatDate.formatTime(donTu.batDau) }} đến {{ formatDate.formatTime(donTu.ketThuc) }} - {{ donTu.ghiChu.length > 0 ? donTu.ghiChu : 'Không có ghi chú' }} {{ data.contentAF.length - 1 !== viTri ? ',' : ''}}
+        <ng-container *ngSwitchCase="'overtime'" >
+          <ion-text *ngFor="let donTu of data.overtimes; let viTri = index">
+            Ngày: {{ formatDate.formatDate(donTu.date_start) }} - Ca chọn: {{ donTu.shift_current.label }} - Từ {{ formatDate.formatTime(donTu.time_start) }} đến {{ formatDate.formatTime(donTu.time_end) }} - {{ donTu.note.length > 0 ? donTu.note : 'Không có ghi chú' }} {{ data.overtimes.length - 1 !== viTri ? ',' : ''}}
           </ion-text>
         </ng-container>
-        <ng-container *ngSwitchCase="5" >
-          <ion-text *ngFor="let donTu of data.contentAF">
-            Ngày: {{ formatDate.formatDate(donTu.ngay) }} - Ca chọn: {{ donTu.caChon.ten }},
+        <ng-container *ngSwitchCase="'misson'" >
+          <ion-text *ngFor="let donTu of data.missons">
+            Ngày: {{ formatDate.formatDate(donTu.date_start) }} - Ca chọn: {{ donTu.shift.ten }},
           </ion-text>
           <ion-text>
-            Địa điểm: {{ data.contentAF[0].diaDiem }}
+            Địa điểm: {{ data.address }}
           </ion-text>
         </ng-container>
-        <ng-container *ngSwitchCase="6" >
+        <ng-container *ngSwitchCase="'worktime'" >
           <ion-text *ngFor="let donTu of data.contentAF">
             Từ {{ formatDate.formatDate(donTu.tuNgay) }} đến {{ formatDate.formatDate(donTu.denNgay) }} - Đi muộn: {{ formatDate.formatTime(donTu.diMuon) }} về sớm: {{ formatDate.formatTime(donTu.veSom) }} - Lý do: {{ donTu.lyDo.ten }}
           </ion-text>
         </ng-container>
-        <ng-container *ngSwitchCase="7" >
-          <ion-text *ngFor="let donTu of data.contentAF; let viTri = index">
-            <ng-container *ngIf="donTu.kieuDoi == 'cm' ">
-              Ngày cần đổi: {{ formatDate.formatDate(donTu.ngayCanDoi) }} - Ca cần đổi: {{ donTu.caCanDoi.ten }} - Ca làm: {{ donTu.caLam.ten }} {{ data.contentAF.length - 1 !== viTri ? ',' : ''}}
+        <ng-container *ngSwitchCase="'shiftchange'" >
+          <ion-text *ngFor="let donTu of data.shiftchange; let viTri = index">
+            <ng-container>
+              Ngày cần đổi: {{ formatDate.formatDate(donTu.date_change) }} - Ca cần đổi: {{ donTu.shift_change.ten }} - Ca làm: {{ donTu.shift_other.label }} {{ data.shiftchange.length - 1 !== viTri ? ',' : ''}}
             </ng-container>
             <ng-container *ngIf="donTu.kieuDoi == 'nk' ">
-              Ngày cần đổi: {{ formatDate.formatDate(donTu.ngayCanDoi) }} - Ca cần đổi: {{ donTu.caCanDoi.ten }} - Người đổi: {{ donTu.nguoiDoi }} - Ngày đổi: {{ formatDate.formatDate(donTu.ngayDoi) }} - Ca làm: {{ donTu.caLam.ten }} {{ data.contentAF.length - 1 !== viTri ? ',' : ''}}
+              Ngày cần đổi: {{ formatDate.formatDate(donTu.date_change) }} - Ca cần đổi: {{ donTu.shift_change.ten }} - Người đổi: {{ donTu.nguoiDoi }} - Ngày đổi: {{ formatDate.formatDate(donTu.ngayDoi) }} - Ca làm: {{ donTu.caLam.ten }} {{ data.contentAF.length - 1 !== viTri ? ',' : ''}}
             </ng-container>
           </ion-text>
         </ng-container>
-        <ng-container *ngSwitchCase="8" >
-          <ion-text *ngFor="let donTu of data.contentAF; let viTri = index">
-            Ngày: {{ formatDate.formatDate(donTu.ngay) }} - Giờ: {{ formatDate.formatTime(donTu.gio) }} - Ca: {{ donTu.caChon.ten }} - Hoạt động: {{ donTu.hoatDong.ten }} - Lý do: {{ donTu.lyDo.ten }} {{ data.contentAF.length - 1 !== viTri ? ',' : ''}}
+        <ng-container *ngSwitchCase="'checkin'" >
+          <ion-text *ngFor="let donTu of data.inout; let viTri = index">
+            Ngày: {{ formatDate.formatDate(donTu.date_start) }} - Giờ: {{ formatDate.formatTime(donTu.time_start) }} - Ca: {{ donTu.shift.ten }} - Hoạt động: {{ donTu.action == 'V' ? 'Vào' : 'Ra' }} - Lý do: {{ donTu.reason }} {{ data.inout.length - 1 !== viTri ? ',' : ''}}
           </ion-text>
         </ng-container>
       </div>
@@ -93,7 +93,7 @@
       </div>
       <div class="content-af">
         <ion-text color="medium">
-          {{ data.description.length > 0 ? data.description : 'Không có mô tả' }}
+          {{ data.desc != null ? data.desc.length > 0 ? data.desc : 'Không có mô tả' : 'Không có mô tả' }}
         </ion-text>
       </div>
     </div>
@@ -101,17 +101,17 @@
   
   <div class="action-application-form" [ngSwitch]="isManager">
     <ng-container *ngSwitchCase="true">
-      <ion-button color="tealgreen" mode="md" *ngIf="data.status == 2">Đồng ý</ion-button>
-      <ion-button color="danger" mode="md" *ngIf="data.status == 2">Từ chối</ion-button>
-      <ion-button color="warning" mode="md" *ngIf="data.status != 2">Hủy bỏ</ion-button>
+      <ion-button color="tealgreen" mode="md" *ngIf="data.status == 'Chờ duyệt'">Duyệt đơn</ion-button>
+      <ion-button color="danger" mode="md" *ngIf="data.status == 'Chờ duyệt'">Từ chối</ion-button>
+      <ion-button color="warning" mode="md" *ngIf="data.status != 'Chờ duyệt'">Hủy bỏ</ion-button>
     </ng-container>
     <ng-container *ngSwitchCase="false">
-      <div class="manager-accept" *ngIf="data.managerApprover != null">
-        <ion-avatar>
-          <img [src]="data.managerApprover.avatar" alt="">
-        </ion-avatar>
+      <div class="manager-accept" *ngIf="data.status != 'Chờ duyệt'">
+        <!-- <ion-avatar>
+          <img [src]="data.approvedBy.avatar" alt="">
+        </ion-avatar> -->
         <ion-label>
-          {{ data.managerApprover.name }}
+          {{ data.approvedBy.name }}
         </ion-label>
       </div>
     </ng-container>

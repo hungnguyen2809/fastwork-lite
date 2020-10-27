@@ -1,9 +1,26 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-
+<ion-content color="background">
+  <div class="main">
+    <ion-item lines="full">
+      <ion-label position="floating" >Email</ion-label>
+      <ion-input 
+        [(ngModel)]="user.email"
+        clearInput="true" 
+        required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating" >Password</ion-label>
+      <ion-input 
+        [(ngModel)]="user.password"
+        type="password" 
+        clearInput="true" 
+        enterkeyhint="enter" 
+        required="true">
+      </ion-input>
+    </ion-item>
+    <div class="btn">
+      <ion-button expand="block" color="mintleaf" mode="ios" (click)="onLogin()">
+        <ion-label>Login</ion-label>
+      </ion-button>
+    </div>
+  </div>
 </ion-content>
