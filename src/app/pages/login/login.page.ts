@@ -20,26 +20,16 @@ export class LoginPage implements OnInit {
 		private presentDialog: PresentDialog
 	) {}
 
-	ngOnInit() {
-		this.authLogin.checkExistsUser().then((res) => {
-			if(res == false){
-				this.presentDialog.presentLoadding("Đang đăng nhập !", (loading: any) => {
-					loading.dismiss();
-					this.nav.navigateRoot("employee-application-form");
-				});
-			}
-			else if(res == true){
-				this.presentDialog.presentLoadding("Đang đăng nhập !", (loading: any) => {
-					loading.dismiss();
-					this.nav.navigateRoot("manager-application-form");
-				})
-			}
-		});
-		
-		this.authUser.getInforUser().then((res: any) => {
-			if (res) {
-				this.user = res;
+	ngOnInit() {		
+		this.authUser.getInforUser().then((user: any) => {
+			if (user) {
+				this.user = user;
 				// console.log(res);
+				this.authLogin.checkExistsUser().then((existsUser: boolean) => {
+					if(existsUser){
+						this.onLogin();
+					}
+				});
 			}
 		});
 	}

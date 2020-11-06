@@ -136,6 +136,7 @@ export class FilterApplicationFormPage implements OnInit {
             this.getDataAF(this.choosedStatus);
             alert.dismiss();
           },
+          checked: item.ma == this.loaiDon.ma
         }
       })),
       animated: true,

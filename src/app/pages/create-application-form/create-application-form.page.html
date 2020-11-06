@@ -8,24 +8,24 @@
 </ion-header>
 
 <ion-content>
-  <div class="information-application-form" [ngSwitch]="loaiDon">
-    <ion-grid *ngSwitchCase="1">
+  <div class="information-application-form" [ngSwitch]="maLoaiDon">
+    <ion-grid *ngSwitchCase="'absence'">
       <ion-row>
         <ion-col>
           <ion-label color="quince">Tổng phép</ion-label>
-          <ion-text color="mandarin">10</ion-text>
+          <ion-text color="mandarin">{{ ngayNghiPhep.tong_phep }}</ion-text>
         </ion-col>
         <ion-col>
           <ion-label color="quince">Đã nghỉ</ion-label>
-          <ion-text color="mandarin">3</ion-text>
+          <ion-text color="mandarin">{{ ngayNghiPhep.nghi_thuc_te }}</ion-text>
         </ion-col>
         <ion-col>
           <ion-label color="quince">Còn lại</ion-label>
-          <ion-text color="mandarin">7</ion-text>
+          <ion-text color="mandarin">{{ ngayNghiPhep.con_thuc_te }}</ion-text>
         </ion-col>
       </ion-row>
     </ion-grid>
-    <ion-grid *ngSwitchCase="2">
+    <ion-grid *ngSwitchCase="'later'">
       <ion-row>
         <ion-col>
           <ion-label color="quince">Tính công</ion-label>
@@ -59,7 +59,7 @@
       <ion-item-sliding #itemSliding *ngFor="let don of dataDonTu; let viTri = index">
         <ion-item>
           <content-application-form 
-            [loaiDon]="loaiDon" 
+            [loaiDon]="maLoaiDon" 
             [data]="don"
             [showDescription]="false"  
           ></content-application-form>

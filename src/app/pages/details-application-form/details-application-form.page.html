@@ -10,23 +10,23 @@
 <ion-content>
   <div class="header-application-form">
     <ion-avatar>
-      <img src="./../../../assets/imgs/person-male.png" alt="">
+      <img [src]="data.createdBy.avatar" alt="">
     </ion-avatar>
     <div class="title-state-application-form">
       <div class="title-application-form">
         <ion-text>
-          Nguyễn Văn Hùng
+          {{ data.createdBy.name }}
         </ion-text>
         <ion-label color="dark">
           <ng-container [ngSwitch]="data.status">
-            <i class="far fa-check-circle" *ngSwitchCase="1"></i>
-            <i class="fas fa-minus-circle" *ngSwitchCase="2"></i>
-            <i class="far fa-times-circle" *ngSwitchCase="3"></i>
+            <i class="far fa-check-circle" *ngSwitchCase="'Đã duyệt'"></i>
+            <i class="fas fa-minus-circle" *ngSwitchCase="'Chờ duyệt'"></i>
+            <i class="far fa-times-circle" *ngSwitchCase="'Không duyệt'"></i>
           </ng-container>
           <ng-container [ngSwitch]="data.status">
-            <span *ngSwitchCase="1">Đồng ý</span>
-            <span *ngSwitchCase="2">Chờ duyệt</span>
-            <span *ngSwitchCase="3">Bị hủy</span>
+            <span *ngSwitchCase="'Đã duyệt'">Đã duyệt</span>
+            <span *ngSwitchCase="'Chờ duyệt'">Chờ duyệt</span>
+            <span *ngSwitchCase="'Không duyệt'">Không duyệt</span>
           </ng-container>
         </ion-label>
       </div>
@@ -40,7 +40,7 @@
       </ion-list-header>
       <ion-item>
         <ion-label>
-          {{ formatDate.formatDate(data.createDate) }} - {{ formatDate.formatTime(data.createDate) }}
+          {{ formatDate.formatDate(data.createdDate) }} - {{ formatDate.formatTime(data.createdDate) }}
         </ion-label>
       </ion-item>
 
@@ -48,8 +48,8 @@
         <ion-label>Ngày phê duyệt</ion-label>
       </ion-list-header>
       <ion-item>
-        <ion-label *ngIf="data.status != 2 else notRequest">
-          {{ formatDate.formatDate(data.acceptDate) }} - {{ formatDate.formatTime(data.acceptDate) }}
+        <ion-label *ngIf="data.status != 'Chờ duyệt' else notRequest">
+          {{ formatDate.formatDate(data.approvedDate) }} - {{ formatDate.formatTime(data.approvedDate) }}
         </ion-label>
         <ng-template #notRequest>
           <ion-label>Đang chờ...</ion-label>
@@ -59,14 +59,14 @@
 
       <ion-list-header color="light" class="btn-add-af">
         <ion-label>Thông tin đơn</ion-label>
-        <ion-text color="primary" *ngIf="data.status == 2 && !manager">
+        <ion-text color="primary" *ngIf="data.status == 'Chờ duyệt' && !manager">
           <div class="ion-activatable ripple-parent" (click)="onAddInformation()">
             Thêm
             <ion-ripple-effect></ion-ripple-effect>
           </div>
         </ion-text>
       </ion-list-header>
-      <ion-item-sliding #itemSliding *ngFor="let donTu of data.contentAF; let viTri = index" [disabled]="data.status != 2">
+      <!-- <ion-item-sliding #itemSliding *ngFor="let donTu of data.contentAF; let viTri = index" [disabled]="data.status != 2">
         <ion-item>
           <content-application-form 
             [loaiDon]="data.typeAF"
@@ -79,13 +79,13 @@
           <ion-item-option color="warning" (click)="onEditAF(donTu, itemSliding)">Sửa</ion-item-option>
           <ion-item-option color="danger" (click)="onDeleteAF(viTri, itemSliding)">Xóa</ion-item-option>
         </ion-item-options>
-      </ion-item-sliding>
+      </ion-item-sliding> -->
 
       <ion-list-header color="light" class="btn-add-af">
         <ion-label>
           Người duyệt
         </ion-label>
-        <ion-text color="primary" *ngIf="data.status == 2 && !manager">
+        <ion-text color="primary" *ngIf="data.status == 'Chờ duyệt' && !manager">
           <div class="ion-activatable ripple-parent" (click)="onEditApprover()">
             Sửa
             <ion-ripple-effect></ion-ripple-effect>
@@ -93,15 +93,15 @@
         </ion-text>
       </ion-list-header>
 
-      <ion-item-sliding #managerApprovers [disabled]="data.status !== 2" *ngFor="let userApprover of data.userApprovers; let viTri = index">
+      <ion-item-sliding #managerApprovers [disabled]="data.status !== 'Chờ duyệt'" *ngFor="let userApprover of data.approvers; let viTri = index">
         <ion-item>
           <ion-text>
             <div class="manager-accept">
-              <ion-avatar>
+              <!-- <ion-avatar>
                 <img [src]="userApprover.anh" alt="">
-              </ion-avatar>
+              </ion-avatar> -->
               <span>
-                {{ userApprover.ten }}
+                {{ userApprover.name }}
               </span>
             </div>
           </ion-text>
@@ -121,12 +121,12 @@
       </ion-list-header>
       <ion-item>
         <ion-text>
-          <div class="manager-accept" *ngIf="data.managerApprover != null else notResult">
-            <ion-avatar>
-              <img [src]="data.managerApprover.avatar" alt="">
-            </ion-avatar>
+          <div class="manager-accept" *ngIf="data.status !== 'Chờ duyệt'; else notRequest">
+            <!-- <ion-avatar>
+              <img [src]="data.approvedBy.avatar" alt="">
+            </ion-avatar> -->
             <span>
-              {{ data.managerApprover.name }}
+              {{ data.approvedBy.name }}
             </span>
           </div>
           <ng-template #notResult>
@@ -140,9 +140,9 @@
           Người nhận thông báo
         </ion-label>
       </ion-list-header>
-      <ion-item [button]="data.status == 2" details="false">
-        <ion-label *ngIf="data.peopleNoti.length > 0; else notPeople">
-          <span *ngFor="let people of data.peopleNoti; let viTri = index">
+      <ion-item [button]="data.status == 'Chờ duyệt'" details="false">
+        <ion-label *ngIf="data.recipients.length > 0; else notPeople">
+          <span *ngFor="let people of data.recipients; let viTri = index">
             {{ people.name }},
           </span>
         </ion-label>
@@ -151,7 +151,7 @@
             Không có nhân viên nào được chọn !
           </ion-label>
         </ng-template>
-        <ion-badge *ngIf="data.peopleNoti.length > 0" slot="end" color="warning">{{data.peopleNoti.length}}</ion-badge>
+        <ion-badge *ngIf="data.recipients.length > 0" slot="end" color="warning">{{ data.recipients.length }}</ion-badge>
       </ion-item>
 
     </ion-list>
@@ -176,7 +176,6 @@
       </div>
     </div>
 
-    <!-- list comments -->
     <div class="comments">
       <ion-avatar>
         <img src="./../../../assets/imgs/avatar_female.png" alt="">
@@ -235,11 +234,12 @@
         </div>
       </div>
     </div>
+
   </div>
 
 </ion-content>
 
-<ion-footer *ngIf="manager && showKeyboard == false">
+<!-- <ion-footer *ngIf="manager && showKeyboard == false">
   <ion-toolbar>
     <ion-grid class="btn-accept">
       <ion-row>
@@ -261,4 +261,4 @@
       </ion-row>
     </ion-grid>
   </ion-toolbar>
-</ion-footer>
+</ion-footer> -->

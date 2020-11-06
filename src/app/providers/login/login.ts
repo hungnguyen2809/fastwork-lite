@@ -51,16 +51,9 @@ export class AuthLogin {
 				})
 			}
 			else {
-				if(data.chuc_vu == null){
-					return new Promise((resolve) =>{
-						resolve(false);
-					});
-				}
-				else{
-					return new Promise((resolve) =>{
-						resolve(false);
-					});
-				}
+				return new Promise((resolve) =>{
+					resolve(true);
+				});
 			}
 		});
 	}
